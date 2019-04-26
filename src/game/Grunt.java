@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 
@@ -12,7 +13,7 @@ public class Grunt extends Actor {
 
 	// Grunts have 50 hitpoints and are always represented with a g
 	public Grunt(String name, Actor player) {
-		super(name, 'g', 5, 50);
+		super(name, 'g',5, 50);
 		addBehaviour(new FollowBehaviour(player));
 	}
 
@@ -32,4 +33,5 @@ public class Grunt extends Actor {
 		
 		return super.playTurn(actions,  map,  display);
 	}
+
 }
