@@ -15,6 +15,7 @@ public class Grunt extends Actor {
 	public Grunt(String name, Actor player) {
 		super(name, 'g',5, 50);
 		addBehaviour(new FollowBehaviour(player));
+
 	}
 
 	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();

@@ -4,14 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import edu.monash.fit2099.engine.Action;
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.AttackAction;
-import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.IntrinsicWeapon;
-import edu.monash.fit2099.engine.World;
+import edu.monash.fit2099.engine.*;
 
 public class Goon extends Actor {
 	Display printResult = new Display();
@@ -20,6 +13,8 @@ public class Goon extends Actor {
 	public Goon(String name, Actor player) {
 		super(name, 'w', 6, 50);		
 		addBehaviour(new FollowBehaviour(player));
+//		Item key = new Key("key", 'K');
+//		addItemToInventory(key);
 	}
 			
 	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
@@ -56,6 +51,7 @@ public class Goon extends Actor {
 		
 		for (ActionFactory factory : actionFactories) {
 			Action action = factory.getAction(this, map);
+			System.out.println(action);
 			if(action != null)
 				return action;
 		}
