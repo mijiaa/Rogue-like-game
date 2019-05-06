@@ -8,7 +8,7 @@ import java.util.List;
 public class Q extends Actor {
     private Actor player;
     public Q (String name, Actor player){
-        super(name,'Q',3,0);
+        super(name,'Q',2,50);
         this.player = player;
         addBehaviour(new WanderAround());
 //        Actions action = new Actions();

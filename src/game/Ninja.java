@@ -38,6 +38,7 @@ public class Ninja extends Actor {
 			//if player location is within the detected range by Ninja
 			if( yDetectedUpper <= playerLocation[1] && playerLocation[1] <= yDetectedLower) {
 				//stunPlayer
+
 				//if player is located above the Ninja location
 				if (playerLocation[1] <= yNinjaCoordinate) {
 					//ensuring the location of next move is within the valid value

@@ -18,16 +18,20 @@ public class Talk extends Action {
     }
 
     public String execute(Actor actor, GameMap map) {
-        System.out.println("TALK");
+
         Location loc_player = map.locationOf(actor);
         Location loc_sub = map.locationOf(subject);
-        List<Item> player_items = subject.getInventory();
+        List<Item> player_items = actor.getInventory();
+        int near = 1;
 
+        if (distance(loc_player,loc_sub) == near){
 
-        if (distance(loc_player,loc_sub) == 1){
-            for(int i =0 ; i<player_items.size() ; i++) {
-                if (player_items.get(i).getClass() == Rocket.class & player_items.get(i).toString() == "Rocket Plan"){
-                    exchange(player_items.get(i));
+            for(int i = 0 ; i<player_items.size() ; i++) {
+                //& player_items.get(i).toString() == "Rocket Plan"
+
+                if (player_items.get(i).getClass() == game.Rocket.class){
+                    exchange(player_items.get(i),map);
+                    System.out.println("Hand them over, I don’t have all day!");
                     return "Hand them over, I don’t have all day!";
 
                 } else {
@@ -44,11 +48,13 @@ public class Talk extends Action {
         return Math.abs(a.x() - b.x()) + Math.abs(a.y() - b.y());
     }
 
-    private void exchange(Item item){
-        actor.removeItemFromInventory(item);
+    private void exchange(Item item,GameMap map){
+        actor.addItemToInventory(item);
         subject.removeItemFromInventory(item);
-        subject.addItemToInventory(item);
-        System.out.println("Q exchange Rocket body and Rocket Plans with Player");
+
+        System.out.println("Q exchange Rocket body with Rocket Plans with Player");
+        System.out.println("Q left with a cheery wave");
+        map.removeActor(subject);
     }
 
     @Override

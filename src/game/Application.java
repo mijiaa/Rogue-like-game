@@ -33,11 +33,14 @@ public class Application {
 		Rocket rocketBody = new Rocket("Rocket Body" , '>');
 		Key key = new Key ("key", 'K');
 
+
 //		Actor player = new Player("Player", '@', 1, 100);
 //		world.addPlayer(player, gameMap, 2, 2);
 		Actor player = new Player("Player", '@', 1, 100);
 		//world.addPlayer(player, gameMap, 9,16 ); //test code for Ninja
-		world.addPlayer(player, gameMap, 4, 2);
+		//player.addItemToInventory(rocketPlan);
+		world.addPlayer(player, gameMap, 3, 	14);
+
 
 		
 //		Grunt grunt = new Grunt("Mongo", player);
@@ -53,7 +56,6 @@ public class Application {
 		Ninja ninja = new Ninja("Naruto",player);
 		gameMap.addActor(ninja, 16, 8);
 		//ninja.playerLocation(gameMap);
-		world.run();
 
 		MiniBoss miniBoss = new MiniBoss("Doctor Maybe" , player);
 		world.addPlayer(miniBoss, gameMap, 2,15);
@@ -64,11 +66,17 @@ public class Application {
 		world.addPlayer(q,gameMap,4,1);
 		q.addItemToInventory(rocketBody);
 
+		Actions action = new Actions();
+		Action talk = new Talk(player,q);
+		Action give = new GivePlans(player, q, rocketBody);
+		//talk.execute(player,gameMap);
+		action.add(talk);
+		action.add(give);
+
 		gameMap.addItem(key,4,5);
 		gameMap.addItem(rocketPlan,6,2);
 
-		Actions action = new Actions(new Talk(player, q));
-		action.add(action);
+
 		world.run();
 	}
 }

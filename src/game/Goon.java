@@ -48,13 +48,18 @@ public class Goon extends Actor {
 		if(prob == 0) {
 			printResult.println(Insult());
 		}
-		
-		for (ActionFactory factory : actionFactories) {
-			Action action = factory.getAction(this, map);
-			System.out.println(action);
-			if(action != null)
-				return action;
+		if (this.isConscious()) {
+			for (ActionFactory factory : actionFactories) {
+				Action action = factory.getAction(this, map);
+				//System.out.println(action);
+				if (action != null)
+					return action;
+			}
 		}
+		else{
+			return new DropItemAction(this.getInventory().get(0));
+		}
+
 		return super.playTurn(actions,  map,  display);
 			
 	}

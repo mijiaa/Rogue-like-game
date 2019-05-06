@@ -17,11 +17,12 @@ public class WanderAround implements ActionFactory {
         Exit exit = lst_exit.get(randomNum);
         Location destination = exit.getDestination();
 
-        if (!destination.canActorEnter(actor)) {
+        if (!destination.canActorEnter(actor) & !map.isAnActorAt(destination)) {
             randomNum = ThreadLocalRandom.current().nextInt(0, lst_exit.size());
             exit = lst_exit.get(randomNum);
             destination = exit.getDestination();
         }
+
 
         return new MoveActorAction(destination, exit.getName());
     }
