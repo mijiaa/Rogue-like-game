@@ -9,6 +9,7 @@ public class Application {
 
 	public static void main(String[] args) {
 		World world = new World(new Display());
+		Display display = new Display();
 
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(),new Door());
 		GameMap gameMap;
@@ -38,8 +39,8 @@ public class Application {
 //		world.addPlayer(player, gameMap, 2, 2);
 		Actor player = new Player("Player", '@', 1, 100);
 		//world.addPlayer(player, gameMap, 9,16 ); //test code for Ninja
-		//player.addItemToInventory(rocketPlan);
-		world.addPlayer(player, gameMap, 3, 	14);
+        player.addItemToInventory(rocketPlan);
+		world.addPlayer(player, gameMap, 6, 	1);
 
 
 		
@@ -55,7 +56,6 @@ public class Application {
 
 		Ninja ninja = new Ninja("Naruto",player);
 		gameMap.addActor(ninja, 16, 8);
-		//ninja.playerLocation(gameMap);
 
 		MiniBoss miniBoss = new MiniBoss("Doctor Maybe" , player);
 		world.addPlayer(miniBoss, gameMap, 2,15);
@@ -66,17 +66,15 @@ public class Application {
 		world.addPlayer(q,gameMap,4,1);
 		q.addItemToInventory(rocketBody);
 
-		Actions action = new Actions();
-		Action talk = new Talk(player,q);
-		Action give = new GivePlans(player, q, rocketBody);
-		//talk.execute(player,gameMap);
-		action.add(talk);
-		action.add(give);
+
+
 
 		gameMap.addItem(key,4,5);
 		gameMap.addItem(rocketPlan,6,2);
 
 
+
 		world.run();
 	}
+
 }

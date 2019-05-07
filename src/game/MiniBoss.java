@@ -22,38 +22,36 @@ public class MiniBoss extends Actor{
 
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-        actions.clear();
+        //actions.clear();
         Location loc_actor = map.locationOf(this);
         Location loc_player = map.locationOf(player);
-        int count = 0;
-        if (distance(loc_actor,loc_player) == 1 & count == 0){
-            actionFactories.clear();
-//
-//            actions.add(new DropItemAction(this.getInventory().get(0)));
+        if (distance(loc_actor,loc_player) == 1 ){
+            //actionFactories.clear();
 //            actions.add(new AttackAction(this,player));
 //            actions.add(new DropItemAction(this.getInventory().get(0)));
-            count += 1;
-        }
-
-//        if (super.isConscious()) {
-        for (ActionFactory factory : actionFactories) {
-            Action action = factory.getAction(this, map);
-            System.out.println(factory.getAction(this, map));
-//            if (action != null)
-            if (action instanceof DropItemAction ) {
-                System.out.println("DROP");
-                if (!super.isConscious()) {
-                    return action;
+            for (Action act: actions) {
+                if (act instanceof MoveActorAction) {
+                    actions.remove(act);
+//                    if(!isConscious()){
+//                        return act;
+                } else {
+                    return act;
                 }
-            }else{
-                return action;}
-//            }
+            }
+
         }
+        else return actionFactories.get(0).getAction(this,map);
+
+////        if (super.isConscious()) {
+//        for (ActionFactory factory : actionFactories) {
+//            Action action = factory.getAction(this, map);
+//            System.out.println(factory.getAction(this, map));
+////            if (action != null)
+//            return action;
+////            }else{return action;}
 //        }
-//        else{
-//            System.out.println("hi");
-//            return new DropItemAction(this.getInventory().get(0));
-//        }
+
+
         return super.playTurn(actions,  map,  display);
 
     }
