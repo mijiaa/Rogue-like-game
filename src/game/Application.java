@@ -42,8 +42,8 @@ public class Application {
 
 		Actor player = new Player("Player", '@', 1, 100);
        // player.addItemToInventory(rocketPlan); //player.addItemToInventory(key);
-		world.addPlayer(player, gameMap, 5, 	1);
-
+		//world.addPlayer(player, gameMap, 5, 	1);
+		world.addPlayer(player, gameMap, 9,16 ); //testing for ninja
 
 		
 //		Grunt grunt = new Grunt("Mongo", player);
