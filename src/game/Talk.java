@@ -20,15 +20,12 @@ public class Talk extends Action {
     public String execute(Actor actor, GameMap map) {
         List<Item> player_items = actor.getInventory();
         for(int i = 0 ; i<player_items.size() ; i++) {
-            if (player_items.get(i).getClass() == game.Rocket.class & player_items.get(i).toString() == "Rocket Plan"){
+            if (player_items.get(i).getClass() == game.Rocket.class & player_items.get(i).toString() == "Rocket Plan") {
                 return "Hand them over, I don’t have all day!";
-
-                } else {
-                    return "I can give you something that will help, but I’m going to need the plans.";
-                }
             }
+        }
 
-        return null;
+        return "I can give you something that will help, but I’m going to need the plans.";
     }
 
 
@@ -39,7 +36,7 @@ public class Talk extends Action {
 
     @Override
     public String hotKey() {
-        return "10";
+        return "9";
     }
 }
 

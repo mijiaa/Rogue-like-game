@@ -11,6 +11,7 @@ public class GivePlans extends Action {
     private Random rand = new Random();
     private Item item1;
     private Item item2;
+    private GameMap map;
 
     public GivePlans (Actor actor, Actor subject, Item item1, Item item2) {
         this.actor = actor;
@@ -20,12 +21,13 @@ public class GivePlans extends Action {
     }
 
     public String execute(Actor actor, GameMap map) {
+        System.out.println(actor.getInventory());
         actor.removeItemFromInventory(item1);
         subject.removeItemFromInventory(item2);
         actor.addItemToInventory(item2);
         map.removeActor(subject);
-        System.out.println(actor.getInventory());
-        return "Q left with a cheery wave, player obtained Rocket Body";
+        return "Q left with a cheery wave, player obtained "+ item2.toString();
+
     }
 
     @Override
@@ -35,6 +37,6 @@ public class GivePlans extends Action {
 
     @Override
     public String hotKey() {
-        return "9";
+        return "10";
     }
 }
