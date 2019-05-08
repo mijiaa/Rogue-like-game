@@ -25,6 +25,7 @@ public class Ninja extends Actor {
 	private int[] playerOriLocation;
 	private int[] playerLocationAfterInput;
 	private int[] supposeStun;
+	private int stunExecute = 0;
 	
 	// Ninja have 50 hitpoints and are always represented with a N
 	public Ninja(String name, Actor player) {
@@ -95,7 +96,19 @@ public class Ninja extends Actor {
 			//if player location is within the detected range by Ninja
 			if( yDetectedUpper <= playerLocation[1] && playerLocation[1] <= yDetectedLower) {
 				///////////////////////stun here///////////////////////////
-				determineStun += 1;
+				if(stunExecute == 0){
+					Random rand = new Random();
+					int prob = rand.nextInt(2);
+					if(prob == 1) {
+						determineStun += 1;
+						stunExecute += 1;
+					}
+				}
+				else {
+					determineStun += 1;
+					stunExecute -= 1;
+				}
+				//determineStun += 1;
 				//Stunt(map,display);
 				///////////////////////stun here///////////////////////////
 				
@@ -149,6 +162,18 @@ public class Ninja extends Actor {
 			if( xDetectedLeft <= playerLocation[0] && playerLocation[0] <= xDetectedRight) {
 				///////////////////////stun here///////////////////////////
 				//count += 1;
+				if(stunExecute == 0){
+					Random rand = new Random();
+					int prob = rand.nextInt(2);
+					if(prob == 1) {
+						determineStun += 1;
+						stunExecute += 1;
+					}
+				}
+				else {
+					determineStun += 1;
+					stunExecute -= 1;
+				}
 				///////////////////////stun here///////////////////////////
 				
 				//if player is located to the left of the Ninja location
@@ -245,7 +270,7 @@ public class Ninja extends Actor {
 		}
 		else if(i == 3){
 			System.out.println("Player stunned second time");
-			playerOriLocation = supposeStun;
+			//playerOriLocation = supposeStun;
 			
 			System.out.println("/////////Inside Second Stunt/////////");
 			System.out.println("playerOriLocation: x=" + playerOriLocation[0] +",y=" + playerOriLocation[1]);
