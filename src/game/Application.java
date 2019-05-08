@@ -38,9 +38,9 @@ public class Application {
 //		Actor player = new Player("Player", '@', 1, 100);
 //		world.addPlayer(player, gameMap, 2, 2);
 		Actor player = new Player("Player", '@', 1, 100);
-		//world.addPlayer(player, gameMap, 9,16 ); //test code for Ninja
+		world.addPlayer(player, gameMap, 9,16 ); //test code for Ninja
         player.addItemToInventory(rocketPlan);
-		world.addPlayer(player, gameMap, 6, 	1);
+		//world.addPlayer(player, gameMap, 6, 	1);
 
 
 		
@@ -54,8 +54,10 @@ public class Application {
 		gameMap.addActor(goon, 0, 0);
 		goon.addItemToInventory(key);
 
+		//Ninja ninja = new Ninja("Naruto",player);
 		Ninja ninja = new Ninja("Naruto",player);
-		gameMap.addActor(ninja, 16, 8);
+		gameMap.addActor(ninja, 15, 8);
+		ninja.setOriLocation(gameMap);
 
 		MiniBoss miniBoss = new MiniBoss("Doctor Maybe" , player);
 		world.addPlayer(miniBoss, gameMap, 2,15);
