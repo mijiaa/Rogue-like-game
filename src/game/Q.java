@@ -13,8 +13,7 @@ public class Q extends Actor {
     public Q (String name, Actor player){
         super(name,'Q',10,20);
         this.player = player;
-//        addBehaviour(new WanderAround());
-
+        addBehaviour(new WanderAround());
     }
 
     private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
@@ -25,6 +24,7 @@ public class Q extends Actor {
 
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
+        System.out.println(player.getInventory());
         for (ActionFactory factory : actionFactories) {
             Action action = factory.getAction(this, map);
             if(action != null){
@@ -39,11 +39,10 @@ public class Q extends Actor {
         Action talk = new Talk(player,this);
         Action give = new GivePlans(player, this ,rocketPlan, rocketBody);
         act.clear();
-        if(otherActor instanceof  Player){
+        if(otherActor.getClass() ==Player.class){
             act.add(talk);
             act.add(give);
         }
-
         return act;
     }
 }

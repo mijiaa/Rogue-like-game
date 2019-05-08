@@ -30,7 +30,7 @@ public class MiniBoss extends Actor{
 //            actions.add(new AttackAction(this,player));
 //            actions.add(new DropItemAction(this.getInventory().get(0)));
             for (Action act: actions) {
-                if (act instanceof MoveActorAction) {
+                if (act.getClass() == MoveActorAction.class) {
                     actions.remove(act);
 //                    if(!isConscious()){
 //                        return act;
