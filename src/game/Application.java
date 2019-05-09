@@ -10,7 +10,7 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(),new Door());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(),new Door(),new RocketPad());
 		GameMap gameMap;
 
 		List<String> map = Arrays.asList(
@@ -24,7 +24,7 @@ public class Application {
 				".......................",
 				".......................",
 				".......................",
-				".......................");
+				"......................%");
 		gameMap = new GameMap(groundFactory, map);
 		world.addMap(gameMap);
 
@@ -41,10 +41,14 @@ public class Application {
 
 
 		Actor player = new Player("Player", '@', 1, 100);
+		player.addItemToInventory(rocketPlan);
+		player.addItemToInventory(rocketEng);
+		player.addItemToInventory(rocketBody);
+		
        // player.addItemToInventory(rocketPlan); //player.addItemToInventory(key);
 		//world.addPlayer(player, gameMap, 5, 	1);
-		world.addPlayer(player, gameMap, 9,16 ); //testing for ninja
-
+		//world.addPlayer(player, gameMap, 9,16 ); //testing for ninja
+		world.addPlayer(player, gameMap, 9,22 );
 		
 //		Grunt grunt = new Grunt("Mongo", player);
 //		gameMap.addActor(grunt, 0, 0);
