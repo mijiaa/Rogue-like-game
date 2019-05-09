@@ -23,7 +23,7 @@ public class RocketPad extends Ground {
 	
 	@Override
 	public boolean canActorEnter(Actor actor) {
-		return true;
+		return false;
 	}
 	
 	@Override
