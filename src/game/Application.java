@@ -32,36 +32,37 @@ public class Application {
 		Rocket rocketPlan = new Rocket("Rocket Plan",'-');
 		Rocket rocketEng = new Rocket ("Rocket Engine" ,'<');
 		Rocket rocketBody = new Rocket("Rocket Body" , '>');
-		Key key = new Key ("key", 'K');
-
+		Key k = new Key ("Key", 'K');
+		Key key = k. newInventoryItem("Key",'K');
 		Item rocketEngine = rocketEng.newInventoryItem("Rocket Engine",'<');
 
 
 
-
-
 		Actor player = new Player("Player", '@', 1, 100);
-		player.addItemToInventory(rocketPlan);
-		player.addItemToInventory(rocketEng);
-		player.addItemToInventory(rocketBody);
+//		player.addItemToInventory(rocketPlan);
+//		player.addItemToInventory(rocketEng);
+//		player.addItemToInventory(rocketBody);
 		
-        player.addItemToInventory(key); //player.addItemToInventory(key);
+        //player.addItemToInventory(key); //player.addItemToInventory(key);
 		//world.addPlayer(player, gameMap, 5, 	1);
 		//world.addPlayer(player, gameMap, 9,16 ); //testing for ninja
-		world.addPlayer(player, gameMap, 2,16 );
+		world.addPlayer(player, gameMap, 0,1);
 		
-//		Grunt grunt = new Grunt("Mongo", player);
-//		gameMap.addActor(grunt, 0, 0);
-//		Grunt grunt2 = new Grunt("Norbert", player);
-//		gameMap.addActor(grunt2,  10, 10);
+		Grunt grunt = new Grunt("Mongo", player);
+		gameMap.addActor(grunt, 10, 8);
+		//grunt.addItemToInventory(key);
+
+		Grunt grunt2 = new Grunt("Norbert", player);
+		gameMap.addActor(grunt2,  10, 10);
+		//grunt2.addItemToInventory(key);
 
 
 		Goon goon = new Goon("Robert",player);
 		gameMap.addActor(goon, 0, 0);
-		//goon.addItemToInventory(key);
+		goon.addItemToInventory(key);
 
 		Ninja ninja = new Ninja("Naruto",player);
-		gameMap.addActor(ninja, 15, 8);
+//		gameMap.addActor(ninja, 15, 8);
 		ninja.setOriLocation(gameMap);
 
 		MiniBoss miniBoss = new MiniBoss("Doctor Maybe" , player);

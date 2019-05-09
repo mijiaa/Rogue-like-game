@@ -1,10 +1,12 @@
 package game;
 
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.DropItemAction;
+
 import edu.monash.fit2099.engine.Item;
 
-import java.util.List;
+/**
+ * Class representing a Rocket type item
+ * Inherited from Item class to have its properties and methods
+ */
 
 public class Rocket extends Item {
     public Rocket(String name, char displayChar) {

@@ -17,8 +17,6 @@ public class Stunt{
 	int stuntRound = 0;
 	public Stunt() {
 	}
-	
-	
 	//public Action playTurn(Actions actions, GameMap map, Display display) {
 		//return actions.get(2);
 	//}

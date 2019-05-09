@@ -16,7 +16,7 @@ public class Item implements Printable, Skilled {
 	}
 	
 	/***
-	 * 
+	 *
 	 * @param name
 	 * @param displayChar
 	 * @return an item that cannot be picked up.

@@ -1,25 +1,18 @@
 package game;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.AttackAction;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.engine.Player;
-import edu.monash.fit2099.engine.SkipTurnAction;
-import edu.monash.fit2099.engine.World;
 
-
+/**
+ * Class representing new character Ninja
+ */
 public class Ninja extends Actor {
 	private Actor playerObj;
-	//private GameMap mapObj;
-	//private Display dispObj;
 	private int count = 0;
 	private int determineStun = 0;
 	private int[] playerOriLocation;
@@ -27,12 +20,19 @@ public class Ninja extends Actor {
 	private int[] supposeStun;
 	private int secondStun = 0;
 	private int thirdStun = 0;
-	//private int stunExecute = 0;
-		
-	// Ninja have 50 hitpoints and are always represented with a N
+
+
 	public Ninja(String name, Actor player) {
-	//public Ninja(String name, PlayerActor player) {	
-		super(name, 'N', 2, 50);
+		/**
+		 * Constructor.
+		 *{@inheritDoc}
+		 * @param name Name to call Goon in the UI
+		 * @param player Character to represent Goon in the UI
+		 *
+		 * Ninja have 50 hitpoints and are always represented with a N
+		 */
+
+		super(name, 'N', 4, 50);
 		playerObj = player;
 	}
 	
@@ -249,35 +249,27 @@ public class Ninja extends Actor {
 		if(i == 1) {
 			System.out.println("Player stunned");
 			
-			System.out.println("/////////Inside Stunt/////////");
-			System.out.println("playerOriLocation: x=" + playerOriLocation[0] +",y=" + playerOriLocation[1]);
-			System.out.println("playerLocationAfterInput: x=" + playerLocationAfterInput[0] +",y=" + playerLocationAfterInput[1]);
-			System.out.println("/////////Inside Stunt/////////");
+//			System.out.println("/////////Inside Stunt/////////");
+//			System.out.println("playerOriLocation: x=" + playerOriLocation[0] +",y=" + playerOriLocation[1]);
+//			System.out.println("playerLocationAfterInput: x=" + playerLocationAfterInput[0] +",y=" + playerLocationAfterInput[1]);
+//			System.out.println("/////////Inside Stunt/////////");
 			
-			//ori
-			//Location oriLocationRef = map.at(playerOriLocation[0],playerOriLocation[1]);
-			//map.moveActor(playerObj,oriLocationRef);
-			//ori
-			
-			map.removeActor(playerObj);
-			map.addActor(playerObj, playerOriLocation[0], playerOriLocation[1]);
+			Location oriLocationRef = map.at(playerOriLocation[0],playerOriLocation[1]);
+			map.moveActor(playerObj,oriLocationRef);
 		}
 		else{
 			System.out.println("Player stunned second time");
-			//playerOriLocation = supposeStun;
-			
+//			//playerOriLocation = supposeStun;
+//
 			System.out.println("/////////Inside Second Stunt/////////");
 			System.out.println("playerOriLocation: x=" + playerOriLocation[0] +",y=" + playerOriLocation[1]);
 			System.out.println("playerLocationAfterInput: x=" + playerLocationAfterInput[0] +",y=" + playerLocationAfterInput[1]);
 			System.out.println("/////////Inside Second Stunt/////////");
-			
-			//ori
-			//Location oriLocationRef = map.at(playerOriLocation[0],playerOriLocation[1]);
-			//map.moveActor(playerObj,oriLocationRef);
-			//ori 
-			
-			map.removeActor(playerObj);
-			map.addActor(playerObj, playerOriLocation[0], playerOriLocation[1]);
+
+			Location oriLocationRef = map.at(playerOriLocation[0],playerOriLocation[1]);
+			map.moveActor(playerObj,oriLocationRef);
+			//map.removeActor(playerObj);
+			//map.addActor(playerObj, playerOriLocation[0], playerOriLocation[1]);
 		}
 		
 		

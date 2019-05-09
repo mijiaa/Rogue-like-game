@@ -4,14 +4,10 @@ import edu.monash.fit2099.engine.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-
-
 
 public class Grunt extends Actor {
 
-	// Grunts have 50 hitpoints and are always represented with a g
+	// Grunts have 50 hitPoints and are always represented with a g
 	public Grunt(String name, Actor player) {
 		super(name, 'g',5, 50);
 		addBehaviour(new FollowBehaviour(player));
@@ -26,6 +22,9 @@ public class Grunt extends Actor {
 
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
+		//remove random DropItemAction
+		actions.remove(actions.get(0));
+
 		for (ActionFactory factory : actionFactories) {
 			Action action = factory.getAction(this, map);
 			if(action != null)

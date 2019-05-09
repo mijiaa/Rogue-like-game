@@ -2,7 +2,9 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-
+/**
+ * Behaviour that allows actor to follow player around.
+ */
 public class FollowBehaviour implements ActionFactory {
 
 	private Actor target;
@@ -11,6 +13,12 @@ public class FollowBehaviour implements ActionFactory {
 		this.target = subject;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * Returns a MoveActorAction that will move actor to a location closer to player
+	 * @return a new instantiated MoveActorAction
+	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		Location here = map.locationOf(actor);

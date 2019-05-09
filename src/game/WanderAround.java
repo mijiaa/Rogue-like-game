@@ -3,12 +3,21 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 import java.util.List;
-
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ *New behaviour that allow actor to wander around map
+ */
 public class WanderAround implements ActionFactory {
     public WanderAround(){}
 
+    /**
+     * {@inheritDoc}
+     *
+     * This method let actor moves randomly on the game map
+     * by giving the actor a random direction each turn
+     * @return new instantiated MoveActorAction
+     */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         Location here = map.locationOf(actor);
