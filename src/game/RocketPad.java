@@ -18,7 +18,7 @@ public class RocketPad extends Ground {
 	private int canBuildRocket = 0;
 	
 	public RocketPad() {
-		super('%');
+		super('X');
 	}
 	
 	@Override
@@ -39,9 +39,9 @@ public class RocketPad extends Ground {
 		
 		for (int i =0; i<item.size(); i++){
             //System.out.println(item.get(i).getDisplayChar());
-            if(item.get(i).getDisplayChar() == '-') { //Rocket Plan
-            	canBuildRocket += 1;
-            }
+//            if(item.get(i).getDisplayChar() == '-') { //Rocket Plan
+//            	canBuildRocket += 1;
+//            }
             
             if(item.get(i).getDisplayChar() == '<') { //Rocket Engine
             	canBuildRocket += 1;
@@ -52,7 +52,7 @@ public class RocketPad extends Ground {
             }
         }
 		
-		if(canBuildRocket == 3) {
+		if(canBuildRocket == 2) {
 			Actions buildRocketActions = new Actions();
 			//buildRocketActions.clear();
 			Action buildRocketAction = new BuildRocket();

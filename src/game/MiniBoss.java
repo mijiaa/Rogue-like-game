@@ -11,7 +11,7 @@ public class MiniBoss extends Actor{
     private StayStill stayStill = new StayStill();
 
     public MiniBoss(String name,Actor player) {
-        super(name, 'D',2, 10);;
+        super(name, 'D',3, 25);;
         this.player = player;
         addBehaviour(stayStill);
     }
@@ -20,6 +20,10 @@ public class MiniBoss extends Actor{
 
     private void addBehaviour(ActionFactory behaviour) {
         actionFactories.add(behaviour);
+    }
+
+    protected IntrinsicWeapon getIntrinsicWeapon() {
+        return new IntrinsicWeapon(5, "punches");
     }
 
     @Override
@@ -49,7 +53,8 @@ public class MiniBoss extends Actor{
         return false;}
 
     private Action returnValidAction(Action currentAction){
-        if (currentAction.getClass() == MoveActorAction.class || currentAction.getClass() == SkipTurnAction.class) {
+        if (currentAction.getClass() == MoveActorAction.class || currentAction.getClass() == SkipTurnAction.class
+                || currentAction.getClass() == DropItemAction.class) {
             return new AttackAction(this,player);
         } else {
             return currentAction;

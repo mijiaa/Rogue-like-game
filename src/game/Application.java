@@ -23,8 +23,8 @@ public class Application {
 				".......................",
 				".......................",
 				".......................",
-				".......................",
-				"......................%");
+				"....................##.",
+				"....................#.X");
 		gameMap = new GameMap(groundFactory, map);
 		world.addMap(gameMap);
 
@@ -45,10 +45,10 @@ public class Application {
 		player.addItemToInventory(rocketEng);
 		player.addItemToInventory(rocketBody);
 		
-       // player.addItemToInventory(rocketPlan); //player.addItemToInventory(key);
+        player.addItemToInventory(key); //player.addItemToInventory(key);
 		//world.addPlayer(player, gameMap, 5, 	1);
 		//world.addPlayer(player, gameMap, 9,16 ); //testing for ninja
-		world.addPlayer(player, gameMap, 9,22 );
+		world.addPlayer(player, gameMap, 2,16 );
 		
 //		Grunt grunt = new Grunt("Mongo", player);
 //		gameMap.addActor(grunt, 0, 0);
@@ -58,7 +58,7 @@ public class Application {
 
 		Goon goon = new Goon("Robert",player);
 		gameMap.addActor(goon, 0, 0);
-		goon.addItemToInventory(key);
+		//goon.addItemToInventory(key);
 
 		Ninja ninja = new Ninja("Naruto",player);
 		gameMap.addActor(ninja, 15, 8);
@@ -69,7 +69,7 @@ public class Application {
 		miniBoss.addItemToInventory(rocketEngine);
 
 		Q q = new Q("Q" , player);
-		gameMap.addActor(q ,1, 4);
+		gameMap.addActor(q ,10, 4);
 		q.addItemToInventory(rocketBody);
 
 //		gameMap.addItem(key,4,5);

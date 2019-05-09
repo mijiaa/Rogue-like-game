@@ -66,7 +66,7 @@ public class Goon extends Actor {
 	
 	//method to return string to insult player
 	public String Insult() {
-		return name + ":aaaaaaaaa";
+		return name + ": STOP RUNNING AWAY YOU SLOWPOKE ! ";
 	}
 }
 
