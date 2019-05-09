@@ -30,7 +30,7 @@ public class GivePlans extends Action {
      * {@inheritDoc}
      *
      * If player has rocket plans, give them to Q.
-     * This will cause the plans to be removed and replaced by the rocket body.
+     * This will caused the plans to be removed and replaced by the rocket body.
      * Q will then be removed from the game
      *
      * Perform the Action.
@@ -42,7 +42,7 @@ public class GivePlans extends Action {
         subject_Q.removeItemFromInventory(item2);
         actor.addItemToInventory(item2);
         map.removeActor(subject_Q);
-        return "Q left with a cheery wave, player obtained "+ item2.toString();
+        return "Q disappears with a cheery wave, player obtained "+ item2.toString();
 
     }
 

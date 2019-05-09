@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.*;
  */
 
 public class Goon extends Actor {
-	Display printResult = new Display();
+
 
 	/**
 	 * Constructor.
@@ -50,7 +50,7 @@ public class Goon extends Actor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
-
+		Display printResult = new Display();
 		//remove random DropItemAction
 		actions.remove(actions.get(0));
 

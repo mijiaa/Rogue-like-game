@@ -40,7 +40,7 @@ public class Q extends Actor {
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-        //System.out.println(player.getInventory());
+
         for (ActionFactory factory : actionFactories) {
             Action action = factory.getAction(this, map);
             if(action != null){
@@ -53,8 +53,9 @@ public class Q extends Actor {
     /**
      *{@inheritDoc}
      *
-     * This method removes replaces all Q default actions with new TALK and GIVEPLANS action
+     * This method add new TALK and GIVEPLANS actions to player's allowable actions
      */
+    @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         Actions actions = super.getAllowableActions(otherActor,direction,map);
         List<Item> player_items = player.getInventory();
@@ -70,7 +71,7 @@ public class Q extends Actor {
         actions.clear();
 
         if(otherActor.getClass() ==Player.class ){
-            if (checkItem(player_items)) {
+            if (checkItemList(player_items)) {
                 actions.add(talk);
                 actions.add(give);
             }
@@ -86,7 +87,7 @@ public class Q extends Actor {
      * @param items player's items list
      * @return true if condition is met
      */
-    private Boolean checkItem(List items){return items.contains(rocketPlan);}
+    private Boolean checkItemList(List items){return items.contains(rocketPlan);}
 
 
 }

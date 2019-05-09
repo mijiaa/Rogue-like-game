@@ -62,7 +62,7 @@ public class Application {
 		goon.addItemToInventory(key);
 
 		Ninja ninja = new Ninja("Naruto",player);
-//		gameMap.addActor(ninja, 15, 8);
+		gameMap.addActor(ninja, 15, 8);
 		ninja.setOriLocation(gameMap);
 
 		MiniBoss miniBoss = new MiniBoss("Doctor Maybe" , player);
@@ -70,7 +70,7 @@ public class Application {
 		miniBoss.addItemToInventory(rocketEngine);
 
 		Q q = new Q("Q" , player);
-		gameMap.addActor(q ,10, 4);
+		gameMap.addActor(q ,9, 8);
 		q.addItemToInventory(rocketBody);
 
 //		gameMap.addItem(key,4,5);
