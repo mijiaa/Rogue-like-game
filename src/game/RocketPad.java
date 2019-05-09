@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RocketPad extends Ground {
-	private int abc = 0;
 	private int canBuildRocket = 0;
 	
 	public RocketPad() {

@@ -254,8 +254,13 @@ public class Ninja extends Actor {
 			System.out.println("playerLocationAfterInput: x=" + playerLocationAfterInput[0] +",y=" + playerLocationAfterInput[1]);
 			System.out.println("/////////Inside Stunt/////////");
 			
-			Location oriLocationRef = map.at(playerOriLocation[0],playerOriLocation[1]);
-			map.moveActor(playerObj,oriLocationRef);
+			//ori
+			//Location oriLocationRef = map.at(playerOriLocation[0],playerOriLocation[1]);
+			//map.moveActor(playerObj,oriLocationRef);
+			//ori
+			
+			map.removeActor(playerObj);
+			map.addActor(playerObj, playerOriLocation[0], playerOriLocation[1]);
 		}
 		else{
 			System.out.println("Player stunned second time");
@@ -266,10 +271,13 @@ public class Ninja extends Actor {
 			System.out.println("playerLocationAfterInput: x=" + playerLocationAfterInput[0] +",y=" + playerLocationAfterInput[1]);
 			System.out.println("/////////Inside Second Stunt/////////");
 			
-			Location oriLocationRef = map.at(playerOriLocation[0],playerOriLocation[1]);
-			map.moveActor(playerObj,oriLocationRef);
-			//map.removeActor(playerObj);
-			//map.addActor(playerObj, playerOriLocation[0], playerOriLocation[1]);
+			//ori
+			//Location oriLocationRef = map.at(playerOriLocation[0],playerOriLocation[1]);
+			//map.moveActor(playerObj,oriLocationRef);
+			//ori 
+			
+			map.removeActor(playerObj);
+			map.addActor(playerObj, playerOriLocation[0], playerOriLocation[1]);
 		}
 		
 		
