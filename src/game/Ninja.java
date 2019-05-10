@@ -5,7 +5,9 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 
 /**
@@ -51,7 +53,7 @@ public class Ninja extends Actor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {	
-					
+		
 		//////////////////////////////////Code for stunt starts here//////////////////////////////////
 			
 		int actionSize = actions.size(); //getting the size of allowable actions of ninja
@@ -76,20 +78,19 @@ public class Ninja extends Actor {
 			//generate random numbers in the range of 0 to 1(50% chances to execute stun code)
 			Random rand = new Random();
 			int prob = rand.nextInt(2);
-			//System.out.println("prob= " + prob);
 			
 			if(prob == 1) {
-				secondStun += 1;
-				supposeStun = playerOriLocation;	
+				secondStun += 1; //make second stun indicator non zero to execute stun code for second round 
+				supposeStun = playerOriLocation; //record the player stunned position for second stun to be performed	
 				Stunt(map,1);				
-				determineStun += 1;
-				thirdStun += 1;
+				determineStun += 1; 
+				thirdStun += 1; //recording how many rounds has player been stunned,to prevent third consecutive stun
 			}			
 			else {
-				determineStun = 0;
+				determineStun = 0; //if no stunt is executed due to the 50% luck,make the stun indicator back to zero(Indicate no stun to be performed)
 			}
 		}
-		//allow stun code to be executed 2 rounds after second stun
+		//allow stun code to be executed 2 rounds after second stun(prevent player from being stunned for 3 consecutive rounds)
 		else if (thirdStun == 2) {
 			thirdStun = 0;
 			determineStun = 0;
@@ -204,21 +205,16 @@ public class Ninja extends Actor {
 	public void Stunt(GameMap map,int i) {
 		//if it is the first round of stun		
 		if(i == 1) {
-			System.out.println("Player stunned");			
+			System.out.println("Player stunned.No movement has been made by player.");			
 			map.removeActor(playerObj);
 			map.addActor(playerObj, playerOriLocation[0], playerOriLocation[1]);
 		}
 		//code for second round of stun
 		else{
-			System.out.println("Player stunned second round");			
+			System.out.println("Player stunned for second round.No movement has been made by player.");			
 			map.removeActor(playerObj);
 			map.addActor(playerObj, playerOriLocation[0], playerOriLocation[1]);
-		}
-		
-		
+		}		
 	}
-	
-  
-
 }
 

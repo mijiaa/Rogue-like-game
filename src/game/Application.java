@@ -39,7 +39,7 @@ public class Application {
 
 		Actor player = new Player("Player", '@', 1, 100);
 		world.addPlayer(player, gameMap, 0,0);
-
+				
 		//adding grunts to game map, grunts has key
 		Grunt grunt = new Grunt("Mongo", player); 
 		gameMap.addActor(grunt, 4, 8);
@@ -58,6 +58,7 @@ public class Application {
 		Ninja ninja = new Ninja("Naruto",player);
 		gameMap.addActor(ninja, 15, 8);
 		ninja.setOriLocation(gameMap);
+		ninja.addItemToInventory(key);
 
 		//adding MiniBoss inside a locked room, MiniBoss has rocket engine
 		MiniBoss miniBoss = new MiniBoss("Doctor Maybe" , player);
