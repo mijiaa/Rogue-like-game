@@ -26,109 +26,88 @@ public class Ninja extends Actor {
 		/**
 		 * Constructor.
 		 *{@inheritDoc}
-		 * @param name Name to call Goon in the UI
-		 * @param player Character to represent Goon in the UI
+		 * @param name Name to call Ninja in the UI
+		 * @param player Character to represent Ninja in the UI
 		 *
 		 * Ninja have 50 hitpoints and are always represented with a N
+		 * Ninja have move one step away behaviour and a 50% chance of stunning player for 2 rounds when they detected player is within 5 squares of them
 		 */
 
 		super(name, 'N', 4, 50);
 		playerObj = player;
 	}
 	
+	/**
+	 * This method saves the player starting position 
+	 * @param map map that contains all the actor locations
+	 */
 	public void setOriLocation(GameMap map) {
 		playerOriLocation = locationCoordinate(map,playerObj);
-		//System.out.println("playerOriLocation: x=" + playerOriLocation[0] +"y=" + playerOriLocation[1]);
 	}
 	
-	
-	
+	/**
+	 * This method allows Ninja to detect whether player is within 5 squares of them 
+	 * If player is within 5 squares of them,ninja will move one step away and have a 50% chance to stun player for 2 rounds
+	 */
+	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {	
-		//mapObj = map;
-		//dispObj = display;
-		
-		//if (count == 1) {
-			//Stunt(map,display);
-			//count -= 1;
-		//}		
-		
-				
+					
 		//////////////////////////////////Code for stunt starts here//////////////////////////////////
-		System.out.println("Before detected,determineStun= " + determineStun);
-		
-		int actionSize = actions.size();
+			
+		int actionSize = actions.size(); //getting the size of allowable actions of ninja
 				
 		int[] playerLocation = locationCoordinate(map,playerObj); //calling playerLocation method to retrieved player location
 		
-		//System.out.println(playerLocation[0]);
-		//System.out.println(playerLocation[1]);
+		//Tracking player movement 
+		//In the first round set player current position to global variable named playerLocationAfterInput
 		if(count == 0) {
 			playerLocationAfterInput=playerLocation;
-			System.out.println("playerOriLocation: x=" + playerOriLocation[0] +",y=" + playerOriLocation[1]);
-			System.out.println("playerLocationAfterInput: x=" + playerLocationAfterInput[0] +",y=" + playerLocationAfterInput[1]);
 			count = count + 1;
 			
 		}
+		//After the first round,set the previous position to playerOriLocation and current position to playerLocationAfterInput
 		else{
 			playerOriLocation = playerLocationAfterInput;
 			playerLocationAfterInput = playerLocation;
-			System.out.println("playerOriLocation: x=" + playerOriLocation[0] +",y=" + playerOriLocation[1]);
-			System.out.println("playerLocationAfterInput: x=" + playerLocationAfterInput[0] +",y=" + playerLocationAfterInput[1]);
 		}
 		
-		//System.out.println("determineStun " + determineStun);
-		if (determineStun == 1 & thirdStun != 2) {
+		//Stun player if the stun indicator for first round is not zero and stun counter is not more than 2 times
+		if (determineStun == 1 && thirdStun != 2) {
+			//generate random numbers in the range of 0 to 1(50% chances to execute stun code)
 			Random rand = new Random();
 			int prob = rand.nextInt(2);
-			System.out.println("prob= " + prob);
+			//System.out.println("prob= " + prob);
 			
 			if(prob == 1) {
 				secondStun += 1;
-				supposeStun = playerOriLocation;
-				System.out.println("supposeStun: x=" + supposeStun[0] +",y=" + supposeStun[1]);
-				Stunt(map,1);
-				System.out.println("Inside 1st Stun,determineStun= " + determineStun);
-				//secondStun += 1;
+				supposeStun = playerOriLocation;	
+				Stunt(map,1);				
 				determineStun += 1;
 				thirdStun += 1;
 			}			
 			else {
 				determineStun = 0;
 			}
-			/*
-			secondStun += 1;
-			supposeStun = playerOriLocation;
-			System.out.println("supposeStun: x=" + supposeStun[0] +",y=" + supposeStun[1]);
-			Stunt(map,1);
-			System.out.println("Inside 1st Stun,determineStun= " + determineStun);
-			//secondStun += 1;
-			determineStun += 1;
-			thirdStun += 1;
-			*/
-			
-			//System.out.println("playerOriLocation: x=" + playerOriLocation[0] +",y=" + playerOriLocation[1]);
-			//System.out.println("playerLocationAfterInput: x=" + playerLocationAfterInput[0] +",y=" + playerLocationAfterInput[1]);
 		}
+		//allow stun code to be executed 2 rounds after second stun
 		else if (thirdStun == 2) {
 			thirdStun = 0;
 			determineStun = 0;
 		}
+		//stun player for second round if stun indicator for second round is not zero
 		else if (secondStun  > 0){
 			playerOriLocation = supposeStun;
-			Stunt(map,2);
-			System.out.println("Inside 2nd Stun,determineStun= " + determineStun);
-			//determineStun = 0;
+			Stunt(map,2);			
 			secondStun = 0;
 			thirdStun += 1;
 		}		
-		//////////////////////////////////Code for stunt starts here//////////////////////////////////
+		//////////////////////////////////Code for stunt ends here//////////////////////////////////
 		
-		//map.at(4, 1); //return location reference
-		//System.out.println(map.groundAt(map.at(2,11)).canActorEnter(this)); //check whether is it wall
+		//getting the ninja's current position 
 		int xNinjaCoordinate = map.locationOf(this).x();
 		int yNinjaCoordinate = map.locationOf(this).y();
 		
-		//if player location x-Coordinate is equivalent to the x-Coordinate of Ninja(Vertical Movement)
+		//if player's location x-Coordinate is equivalent to the x-Coordinate of Ninja(Vertical Movement)
 		if (playerLocation[0] == xNinjaCoordinate){
 			//calculating the y-Coordinate range that the Ninja can detect player
 			int yDetectedUpper = yNinjaCoordinate - 5;
@@ -136,28 +115,12 @@ public class Ninja extends Actor {
 						
 			//if player location is within the detected range by Ninja
 			if( yDetectedUpper <= playerLocation[1] && playerLocation[1] <= yDetectedLower) {
-				///////////////////////stun here///////////////////////////
-				/*
-				if(stunExecute == 0){
-					Random rand = new Random();
-					int prob = rand.nextInt(2);
-					if(prob == 1) {
-						determineStun += 1;
-						stunExecute += 1;
-					}
-				}
-				else {
-					determineStun += 1;
-					stunExecute -= 1;
-				}
-				*/
-				determineStun += 1;	
-				System.out.println("Inside detected if statement,determineStun= : " + determineStun);
-				///////////////////////stun here///////////////////////////
-				
+
+				determineStun += 1;	//adding one to the stun indicator to allow player to be stunned for the next round
+							
 				//if player is located above the Ninja location
 				if (playerLocation[1] <= yNinjaCoordinate) {
-					
+					//move ninja one step away from player in the direction of South
 					for(int i=0;i<actionSize;i++) {
 						if(actions.get(i).menuDescription(this).equalsIgnoreCase("Naruto moves South")) {
 							return actions.get(i);
@@ -167,7 +130,7 @@ public class Ninja extends Actor {
 				
 				//if player is located below the Ninja location
 				if (playerLocation[1] >= yNinjaCoordinate) {
-					
+					//move ninja one step away from player in the direction of North
 					for(int i=0;i<actionSize;i++) {
 						if(actions.get(i).menuDescription(this).equalsIgnoreCase("Naruto moves North")) {
 							return actions.get(i);
@@ -185,28 +148,12 @@ public class Ninja extends Actor {
 			
 			//if player location is within the detected range by Ninja
 			if( xDetectedLeft <= playerLocation[0] && playerLocation[0] <= xDetectedRight) {
-				///////////////////////stun here///////////////////////////
-				/*
-				if(stunExecute == 0){
-					Random rand = new Random();
-					int prob = rand.nextInt(2);
-					if(prob == 1) {
-						determineStun += 1;
-						stunExecute += 1;
-					}
-				}
-				else {
-					determineStun += 1;
-					stunExecute -= 1;
-				}
-				*/
-				determineStun += 1;	
-				System.out.println("Inside detected if statement,determineStun= : " + determineStun);
-				///////////////////////stun here///////////////////////////
-				
+
+				determineStun += 1;	//adding one to the stun indicator to allow player to be stunned for the next round
+							
 				//if player is located to the left of the Ninja location
 				if (playerLocation[0] <= xNinjaCoordinate) {
-					
+					//move ninja one step away from player in the direction of East
 					for(int i=0;i<actionSize;i++) {
 						if(actions.get(i).menuDescription(this).equalsIgnoreCase("Naruto moves East")) {
 							return actions.get(i);
@@ -216,7 +163,7 @@ public class Ninja extends Actor {
 				
 				//if player is located to the right of the Ninja location
 				if (playerLocation[0] >= xNinjaCoordinate) {
-					
+					//move ninja one step away from player in the direction of West
 					for(int i=0;i<actionSize;i++) {
 						if(actions.get(i).menuDescription(this).equalsIgnoreCase("Naruto moves West")) {
 							return actions.get(i);
@@ -226,14 +173,20 @@ public class Ninja extends Actor {
 			}
 		}
 		
-		return actions.get(actions.size()-1); //do nothing if the player is not within the detected range by Ninja
+		return actions.get(actions.size()-1); //do nothing if the player is not within the detected range by Ninja or Ninja is blocked by wall or edges of map
 		
 	}
-
-	//method to return the player location in the list format of [x-Coordinate,y-Coordinate]
+	
+	/**
+	 * This method return the actor location
+	 * @param gamemap map that contains all the actor locations
+	 * @param actorObj actor object 
+	 * @return the x and y coordinate of actor in the list format of [x-Coordinate,y-Coordinate]
+	 */
+	//method to return the actor location in the list format of [x-Coordinate,y-Coordinate]
 	public int[] locationCoordinate(GameMap gamemap,Actor actorObj) {
 		
-		Location locationRef = gamemap.locationOf(actorObj);
+		Location locationRef = gamemap.locationOf(actorObj); //getting the location reference of actor
 		int xCoordinate = locationRef.x();
 		int yCoordinate = locationRef.y();
 		
@@ -242,40 +195,21 @@ public class Ninja extends Actor {
 		return coordinate;	
 	}
 	
+	/**
+	 * This method will stun player by removing player from the current position and add the player back to the original position where the player was stunned
+	 * @param map map that contains all the actor locations
+	 * @param i indicator to determine the stun round
+	 */
 	public void Stunt(GameMap map,int i) {
-		//Action skipTurnAction = new SkipTurnAction();
-		//Actions skipTurn = new Actions(skipTurnAction);
-		
+		//if it is the first round of stun		
 		if(i == 1) {
-			System.out.println("Player stunned");
-			
-//			System.out.println("/////////Inside Stunt/////////");
-//			System.out.println("playerOriLocation: x=" + playerOriLocation[0] +",y=" + playerOriLocation[1]);
-//			System.out.println("playerLocationAfterInput: x=" + playerLocationAfterInput[0] +",y=" + playerLocationAfterInput[1]);
-//			System.out.println("/////////Inside Stunt/////////");
-			
-			//ori
-			//Location oriLocationRef = map.at(playerOriLocation[0],playerOriLocation[1]);
-			//map.moveActor(playerObj,oriLocationRef);
-			//ori
-			
+			System.out.println("Player stunned");			
 			map.removeActor(playerObj);
 			map.addActor(playerObj, playerOriLocation[0], playerOriLocation[1]);
 		}
+		//code for second round of stun
 		else{
-			System.out.println("Player stunned second time");
-//			//playerOriLocation = supposeStun;
-//
-			System.out.println("/////////Inside Second Stunt/////////");
-			System.out.println("playerOriLocation: x=" + playerOriLocation[0] +",y=" + playerOriLocation[1]);
-			System.out.println("playerLocationAfterInput: x=" + playerLocationAfterInput[0] +",y=" + playerLocationAfterInput[1]);
-			System.out.println("/////////Inside Second Stunt/////////");
-			
-			//ori
-			//Location oriLocationRef = map.at(playerOriLocation[0],playerOriLocation[1]);
-			//map.moveActor(playerObj,oriLocationRef);
-			//ori
-			
+			System.out.println("Player stunned second round");			
 			map.removeActor(playerObj);
 			map.addActor(playerObj, playerOriLocation[0], playerOriLocation[1]);
 		}

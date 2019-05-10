@@ -44,17 +44,17 @@ public class RocketPad extends Ground {
 
 	/**
 	 * {@inheritDoc}
-	 *This method check if player has Rockey Body and RocketEngine
+	 *This method check if player has Rocket Body and RocketEngine
 	 *and add new BuildRocket action to player
 	 */
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction){
 
-		canBuildRocket = 0;
-		List<Item> item = actor.getInventory();
+		canBuildRocket = 0; //indicator to determine whether the player fulfil the requirements to build rocket
+		List<Item> item = actor.getInventory(); //accessing the player's item inventory
 		
-		for (int i =0; i<item.size(); i++){
-            
+		//iterate over player's item inventory to check whether the player contains Rocket Engine and Rocket Body
+		for (int i =0; i<item.size(); i++){           
             if(item.get(i).getDisplayChar() == '<') { //Rocket Engine
             	canBuildRocket += 1;
             }
@@ -64,11 +64,11 @@ public class RocketPad extends Ground {
             }
         }
 		
+		//if player has both Rocket Body and Rocket Engine,add new actions of building rocket to player
 		if(canBuildRocket >= 2) {
 			Actions buildRocketActions = new Actions();
-			//buildRocketActions.clear();
 			Action buildRocketAction = new BuildRocket();
-			buildRocketActions.add(buildRocketAction );
+			buildRocketActions.add(buildRocketAction);
 			return buildRocketActions;
 			
 		}

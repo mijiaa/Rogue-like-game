@@ -45,15 +45,15 @@ public class Application {
 		
         //player.addItemToInventory(key); //player.addItemToInventory(key);
 		//world.addPlayer(player, gameMap, 5, 	1);
-		//world.addPlayer(player, gameMap, 9,16 ); //testing for ninja
-		world.addPlayer(player, gameMap, 0,1);
+		world.addPlayer(player, gameMap, 9,16 ); //testing for ninja
+		//world.addPlayer(player, gameMap, 0,1);
 		
-		Grunt grunt = new Grunt("Mongo", player);
-		gameMap.addActor(grunt, 10, 8);
+		Grunt grunt = new Grunt("Mongo", player); 
+		gameMap.addActor(grunt, 10, 8); 
 		//grunt.addItemToInventory(key);
 
-		Grunt grunt2 = new Grunt("Norbert", player);
-		gameMap.addActor(grunt2,  10, 10);
+		Grunt grunt2 = new Grunt("Norbert", player); 
+		gameMap.addActor(grunt2,  10, 10); 
 		//grunt2.addItemToInventory(key);
 
 

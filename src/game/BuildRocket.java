@@ -26,7 +26,7 @@ public class BuildRocket extends Action {
 	public String execute(Actor actor, GameMap map) {
 		List<Item> inventoryItems = actor.getInventory();
 
-		
+		//removing both Rocket Engine and Rocket Body from player's item inventory once the player chosen the build rocket action
 		for (int i =0; i<inventoryItems.size(); i++){
             if(inventoryItems.get(i).getDisplayChar() == '<') { //Rocket Engine
             	actor.removeItemFromInventory(inventoryItems.get(i));
@@ -39,7 +39,6 @@ public class BuildRocket extends Action {
         }
 
 		actor.addItemToInventory(rocket);
-		//return menuDescription(actor);
 		return "ROCKET BUILT, PLAYER ACHIEVED GOAL OF THE GAME";
 	}
 
