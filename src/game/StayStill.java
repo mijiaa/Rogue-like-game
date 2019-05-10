@@ -12,12 +12,11 @@ public class StayStill implements ActionFactory {
     /**
      * {@inheritDoc}
      *
-     * This method skip the actor's turn, retrict it from perfroming any action
+     * This method skip the actor's turn, retrict it from performing any action
      * @return new instantiated SkipTurnAction
      */
     @Override
     public Action getAction(Actor actor, GameMap map) {
         return new SkipTurnAction();
-
     }
 }

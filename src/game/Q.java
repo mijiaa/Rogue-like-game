@@ -20,7 +20,7 @@ public class Q extends Actor {
      * @param name Name to call Q in the UI
      * @param player Character to represent Q in the UI
      *
-     * Q have 100 hitpoints and are always represented with a Q
+     * Q have 100 hitPoints and are always represented with a Q
      * Q have a WanderAround behaviour that move him randomly around the map
      */
     public Q (String name, Actor player){
@@ -53,14 +53,18 @@ public class Q extends Actor {
     /**
      *{@inheritDoc}
      *
-     * This method add new TALK and GIVEPLANS actions to player's allowable actions
+     * This method add new Talk and GivePlans actions to player's allowable actions.
+     * If player is holding valid Rocket Plans, add both Talk and GivePlans to player's allowable actions
+     * else, add only Talk action
      */
     @Override
     public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
         Actions actions = super.getAllowableActions(otherActor,direction,map);
         List<Item> player_items = player.getInventory();
 
+        //This for loop assign valid Rocket Plan object to attribute rocketPlan
         for(int i = 0 ; i<player_items.size() ; i++) {
+            //Rocket Plan is only considered valid if it passes the getClass, and to.String() comparison
             if (player_items.get(i).getClass() == Rocket.class & player_items.get(i).toString().equals("Rocket Plan")) {
                 rocketPlan = player_items.get(i);
             }

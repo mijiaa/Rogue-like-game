@@ -196,7 +196,8 @@ public class Ninja extends Actor {
 	}
 	
 	/**
-	 * This method will stun player by removing player from the current position and add the player back to the original position where the player was stunned
+	 * This method will stun player by removing player from the current position and
+	 * add the player back to the original position where the player was stunned
 	 * @param map map that contains all the actor locations
 	 * @param i indicator to determine the stun round
 	 */

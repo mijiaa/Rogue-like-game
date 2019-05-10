@@ -11,8 +11,7 @@ import edu.monash.fit2099.engine.*;
 public class BuildRocket extends Action {
 	private Display printResult = new Display();
 	private Rocket rocket = new Rocket("Rocket", '~');
-	public BuildRocket() {
-	}
+	public BuildRocket() {}
 
 	/**
 	 * {@inheritDoc}
@@ -37,7 +36,6 @@ public class BuildRocket extends Action {
 				printResult.println("Player placed Rocket Body on Rocket Pad.");
             }
         }
-
 		actor.addItemToInventory(rocket);
 		return "ROCKET BUILT, PLAYER ACHIEVED GOAL OF THE GAME";
 	}

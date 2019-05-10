@@ -18,9 +18,7 @@ public class GivePlans extends Action {
      * @param item1 represent Rocket plans
      * @param item2 represent Rocket body
      */
-
     public GivePlans (Actor subject, Item item1, Item item2) {
-        ;
         this.subject_Q = subject;
         this.item1 = item1;
         this.item2 = item2;
@@ -35,15 +33,13 @@ public class GivePlans extends Action {
      *
      * Perform the Action.
      */
-
+    @Override
     public String execute(Actor actor, GameMap map) {
-        System.out.println(actor.getInventory());
         actor.removeItemFromInventory(item1);
         subject_Q.removeItemFromInventory(item2);
         actor.addItemToInventory(item2);
         map.removeActor(subject_Q);
         return "Q disappears with a cheery wave, player obtained "+ item2.toString();
-
     }
 
     /**

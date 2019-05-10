@@ -1,7 +1,5 @@
 package game;
 
-
-
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
@@ -58,21 +56,18 @@ public class RocketPad extends Ground {
             if(item.get(i).getDisplayChar() == '<') { //Rocket Engine
             	canBuildRocket += 1;
             }
-            
             if(item.get(i).getDisplayChar() == '>') { //Rocket Body
             	canBuildRocket += 1;
             }
         }
-		
+
 		//if player has both Rocket Body and Rocket Engine,add new actions of building rocket to player
 		if(canBuildRocket >= 2) {
 			Actions buildRocketActions = new Actions();
 			Action buildRocketAction = new BuildRocket();
 			buildRocketActions.add(buildRocketAction);
 			return buildRocketActions;
-			
 		}
-		
 		return new Actions();
 	}
 	

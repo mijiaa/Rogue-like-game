@@ -52,18 +52,24 @@ public class MiniBoss extends Actor{
      */
     @Override
     public Action playTurn(Actions actions, GameMap map, Display display) {
-
         int index = actionFactories.indexOf(stayStill);
+
+        //get the location of player and MiniBoss
         Location loc_actor = map.locationOf(this);
         Location loc_player = map.locationOf(player);
-        int randomNum = ThreadLocalRandom.current().nextInt(0, actions.size());
 
+        //generating a random number and use it as an index to get the next action from actions list
+        int randomNum = ThreadLocalRandom.current().nextInt(0, actions.size());
         Action currentAction = actions.get(randomNum);
 
+        //if player is 1 step away from MiniBoss,
+        //call returnValidAction to verify currentAction
         if (near(distance(loc_actor,loc_player))){
             return returnValidAction(currentAction);
         }
         else {
+
+            //return StayStill behaviour when player is not around MiniBoss
             return actionFactories.get(index).getAction(this,map);
         }
     }
@@ -80,7 +86,7 @@ public class MiniBoss extends Actor{
     }
 
     /**
-     * This method checks if player is near actor
+     * This method checks if player is 1 step away of the actor(consider as "near")
      * @param distance is the distance of actor and player
      * @return true if condition is met
      */
@@ -88,6 +94,7 @@ public class MiniBoss extends Actor{
 
     /**
      * This method skip MoveActorAction, SkipTurnAction, DropItemAction of the actor
+     * only allows AttackAction
      * @param currentAction Action that the actor will carry out next
      * @return new instantiated AttackAction
      */

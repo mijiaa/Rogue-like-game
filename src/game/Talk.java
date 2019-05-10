@@ -32,7 +32,7 @@ public class Talk extends Action {
      *
      * @return Q's replies as String
      */
-
+    @Override
     public String execute(Actor actor, GameMap map) {
         List<Item> player_items = actor.getInventory();
         for(int i = 0 ; i<player_items.size() ; i++) {
@@ -40,7 +40,6 @@ public class Talk extends Action {
                 return "Hand them over, I don’t have all day!";
             }
         }
-
         return "I can give you something that will help, but I’m going to need the plans.";
     }
 

@@ -22,6 +22,7 @@ public class Grunt extends Actor {
 
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
+
 		//remove random DropItemAction
 		actions.remove(actions.get(0));
 
@@ -30,7 +31,6 @@ public class Grunt extends Actor {
 			if(action != null)
 				return action;
 		}
-		
 		return super.playTurn(actions,  map,  display);
 	}
 

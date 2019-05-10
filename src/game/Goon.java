@@ -12,7 +12,6 @@ import edu.monash.fit2099.engine.*;
 
 public class Goon extends Actor {
 
-
 	/**
 	 * Constructor.
 	 *{@inheritDoc}
@@ -22,11 +21,9 @@ public class Goon extends Actor {
 	 * Goon have 50 hitPoints and are always represented with a w
 	 * Goon has a FollowBehaviour that follows player around the game map.
 	 */
-
 	public Goon(String name, Actor player) {
 		super(name, 'w', 6, 50);
 		addBehaviour(new FollowBehaviour(player));
-
 	}
 
 	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
@@ -34,7 +31,8 @@ public class Goon extends Actor {
 	private void addBehaviour(ActionFactory behaviour) {
 		actionFactories.add(behaviour);
 	}
-	/***
+
+	/**
 	 *
 	 *{@inheritDoc}
 	 * Goon has twice the damage of a Grunt.
@@ -44,14 +42,16 @@ public class Goon extends Actor {
 	protected IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(10, "punches");
 	}
-	/***
+
+	/**
 	 *
 	 *{@inheritDoc}
 	 */
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		Display printResult = new Display();
-		//remove random DropItemAction
+
+		//remove DropItemAction from actions
 		actions.remove(actions.get(0));
 
 		//generate a random number in the range of 0-9

@@ -14,18 +14,15 @@ public class Door extends Ground {
      * Constructor.
      *{@inheritDoc}
      */
-    public Door () { super('|');
-    }
-
+    public Door () { super('|'); }
 
     /**
      * {@inheritDoc}
      *Only passable if condition are met.
      *Conditions : actor has a key item
      *
-     * @return true if conditon is met
+     * @return true if condition is met
      */
-
     @Override
     public boolean canActorEnter(Actor actor) {
         List<Item> item = actor.getInventory();
@@ -36,6 +33,7 @@ public class Door extends Ground {
         }
         return false;
     }
+
     /**
      * {@inheritDoc}
      */
@@ -43,5 +41,4 @@ public class Door extends Ground {
     public boolean blocksThrownObjects() {
         return true;
     }
-
 }
