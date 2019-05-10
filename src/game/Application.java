@@ -62,7 +62,7 @@ public class Application {
 
 		//adding MiniBoss inside a locked room, MiniBoss has rocket engine
 		MiniBoss miniBoss = new MiniBoss("Doctor Maybe" , player);
-		//gameMap.addActor(miniBoss, 15,2);
+		gameMap.addActor(miniBoss, 15,2);
 		miniBoss.addItemToInventory(rocketEngine);
 
 		//adding Q to game map, Q has rocket body
