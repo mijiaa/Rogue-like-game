@@ -10,11 +10,11 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(),new Door(),new RocketPad());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(),new Door(),new RocketPad(), new OxygenDispenser());
 		GameMap gameMap;
 
 		List<String> map = Arrays.asList(
-				".......................",
+				"..O....................",
 				"....#####....######....",
 				"....#...#....#....#....",
 				"....#...|....|....#....",
@@ -35,6 +35,10 @@ public class Application {
 		Key k = new Key ("Key", 'K');
 		Key key = k. newInventoryItem("Key",'K');
 		Item rocketEngine = rocketEng.newInventoryItem("Rocket Engine",'<');
+		SpaceSuit s_suit = new SpaceSuit("Space Suit",'S');
+
+
+		gameMap.addItem(s_suit,19,10);
 
 
 		Actor player = new Player("Player", '@', 1, 100);
