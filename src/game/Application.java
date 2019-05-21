@@ -35,15 +35,20 @@ public class Application {
 		Key k = new Key ("Key", 'K');
 		Key key = k. newInventoryItem("Key",'K');
 		Item rocketEngine = rocketEng.newInventoryItem("Rocket Engine",'<');
-		SpaceSuit s_suit = new SpaceSuit("Space Suit",'S');
+		//SpaceSuit s_suit = new SpaceSuit("Space Suit",'S');
 
 
-		gameMap.addItem(s_suit,19,10);
+		//gameMap.addItem(s_suit,19,10);
 
 
 		Actor player = new Player("Player", '@', 1, 100);
-		world.addPlayer(player, gameMap, 0,0);
-				
+		//world.addPlayer(player, gameMap, 0,0);
+		player.addItemToInventory(rocketPlan);
+		player.addItemToInventory(rocketEng);
+		player.addItemToInventory(rocketBody);
+		world.addPlayer(player, gameMap, 8,22);
+		
+		/*
 		//adding grunts to game map, grunts has key
 		Grunt grunt = new Grunt("Mongo", player); 
 		gameMap.addActor(grunt, 4, 8);
@@ -76,7 +81,8 @@ public class Application {
 
 		//adding rocket plan inside a locked room
 		gameMap.addItem(rocketPlan,6,2);
-
+		*/
+		
 		world.run();
 	}
 
