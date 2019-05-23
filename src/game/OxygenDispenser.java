@@ -6,7 +6,6 @@ import game.GetOxygenTank;
 
 public class OxygenDispenser extends Ground {
     GameMap map ;
-    Integer turn = 0;
     /**
      * Constructor.
      *{@inheritDoc}
@@ -40,12 +39,10 @@ public class OxygenDispenser extends Ground {
      */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction){
-        turn += 1;
+
         GetOxygenTank getOxygen = new GetOxygenTank();
-        getOxygen.setTurn(turn);
         Actions actions = new Actions();
         Action getOxygenTankAction = new GetOxygenTank();
-//        if (getTurn(1){
         actions.add(getOxygenTankAction);
 
         return actions;

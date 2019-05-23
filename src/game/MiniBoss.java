@@ -19,7 +19,7 @@ public class MiniBoss extends Actor{
      * @param name Name to call Goon in the UI
      * @param player Character to represent Goon in the UI
      *
-     * MiniBoss have 50 hitpoints and are always represented with a D
+     * MiniBoss have 25 hitpoints and are always represented with a D
      * MiniBoss have a StayStill behaviour that retrict him from moving at all
      */
     public MiniBoss(String name,Actor player) {

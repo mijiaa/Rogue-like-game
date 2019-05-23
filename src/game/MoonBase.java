@@ -54,7 +54,8 @@ public class MoonBase {
 		moonMap.addActor(ninja, 15, 8);
 		ninja.setOriLocation(moonMap);
 		//ninja.addItemToInventory(key);
-		
+
+
 		moonWorld.run();
 	}
 }
