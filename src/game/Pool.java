@@ -38,9 +38,8 @@ public class Pool extends Ground {
     public Actions allowableActions(Actor actor, Location location, String direction) {
 
         Actions actions = new Actions();
-        Action getOxygenTankAction = new GetOxygenTank();
-
-        actions.add(getOxygenTankAction);
+        Action refill = new RefillWaterPistol();
+        actions.add(refill);
 
         return actions;
     }

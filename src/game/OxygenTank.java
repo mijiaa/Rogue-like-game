@@ -13,7 +13,7 @@ public class OxygenTank extends Item {
 
     public OxygenTank(String name, char displayChar) {
         super(name, displayChar);
-        addSkill(skills.BREATH);
+        this.addSkill(ItemSkills.BREATH);
     }
 
     public int oxygen_depletion(){
