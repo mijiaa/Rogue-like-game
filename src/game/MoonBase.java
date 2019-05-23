@@ -6,11 +6,14 @@ import java.util.List;
 import edu.monash.fit2099.engine.*;
 
 public class MoonBase {
+	private GameMap earthMap;
+	private RocketToEarth rocketAtMoon = new RocketToEarth("Rocket", '~');
 	
-	public MoonBase(Actor player){
+	public MoonBase(Actor player,GameMap earth){
+		earthMap = earth;
 		World moonWorld = new World(new Display());
 		
-		FancyGroundFactory MoonGroundFactory = new FancyGroundFactory(new Floor(), new Wall(),new Door(),new RocketPad(),new RocketGround());
+		FancyGroundFactory MoonGroundFactory = new FancyGroundFactory(new Floor(), new Wall(),new Door(),new RocketPad());
 		GameMap moonMap;
 		
 		List<String> secondMap = Arrays.asList(
@@ -24,12 +27,13 @@ public class MoonBase {
 				".......................",
 				".......................",
 				".......................",
-				"......................R");
+				".......................");
 		
 		moonMap = new GameMap(MoonGroundFactory, secondMap);
 		moonWorld.addMap(moonMap);
 		
-		moonWorld.addPlayer(player, moonMap, 10,21);
+		moonWorld.addPlayer(player, moonMap, 10,22);
+		moonMap.addItem(rocketAtMoon, 22, 10);
 		
 		//adding grunts to game map, grunts has key
 		Grunt grunt = new Grunt("Mongo", player); 

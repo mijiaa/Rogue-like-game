@@ -36,9 +36,15 @@ public class BuildRocket extends Action {
 				printResult.println("Player placed Rocket Body on Rocket Pad.");
             }
         }
-		actor.addItemToInventory(rocket);
+		//actor.addItemToInventory(rocket);
+		//Location placeRocketLocationRef = map.at(22, 10); //getting the location reference of rocketPad
+		//map.add(new RocketGround(), placeRocketLocationRef); //replace rocketPad with built Rocket
+		//return "ROCKET BUILT, PLAYER ACHIEVED GOAL OF THE GAME";
+		
+		//actor.addItemToInventory(rocket);
 		Location placeRocketLocationRef = map.at(22, 10); //getting the location reference of rocketPad
-		map.add(new RocketGround(), placeRocketLocationRef); //replace rocketPad with built Rocket
+		map.add(new Floor(), placeRocketLocationRef); //remove rocketPad from map
+		map.addItem(rocket, 22, 10); //add rocket item on map at the location of rocketPad
 		return "ROCKET BUILT, PLAYER ACHIEVED GOAL OF THE GAME";
 	}
 
