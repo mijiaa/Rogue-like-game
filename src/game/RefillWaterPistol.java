@@ -12,27 +12,28 @@ public class RefillWaterPistol extends Action {
     public RefillWaterPistol(){}
 
     public String execute(Actor actor, GameMap map) {
-        // TODO Auto-generated method stub
         List<Item> items  = actor.getInventory();
 
         for (Item item: items){
             if (item.hasSkill(ItemSkills.UNLOADED)){
                 item.removeSkill(ItemSkills.UNLOADED);
                 item.addSkill(ItemSkills.LOADED);
+                System.out.println(item.getClass());
+                return "Your pistol is refilled";
             }
         }
-        return "Your pistol is refilled";
+        return "You need a pistol";
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        // TODO Auto-generated method stub
+
         return "Refill water Pistol";
     }
 
     @Override
     public String hotKey() {
-        // TODO Auto-generated method stub
+
         return "13";
     }
 

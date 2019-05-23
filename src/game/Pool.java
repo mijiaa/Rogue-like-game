@@ -8,7 +8,7 @@ public class Pool extends Ground {
      *{@inheritDoc}
      */
     public Pool() {
-        super('P');
+        super('*');
     }
 
     /**

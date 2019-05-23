@@ -10,6 +10,8 @@ import java.util.List;
 public class FlyToMoon extends Action {
 
 	SpaceSuit ss;
+	Boolean moon = false;
+	ExtendedPlayer player;
 	public FlyToMoon() {}
 	
 	@Override
@@ -23,10 +25,14 @@ public class FlyToMoon extends Action {
 			}
 		}
 		if (items.contains(ss)) {
+            fly();
+            player=  (ExtendedPlayer) actor;
+            player.atMoon(moon);
 			new MoonBase(actor, map);
+
 			return null;
 		}
-		return "You need a Space Suit !";
+		return "---------- You need a Space Suit ! ------------";
 	}
 
 	@Override
@@ -41,4 +47,5 @@ public class FlyToMoon extends Action {
 		return "12";
 	}
 
+	public void fly(){this.moon =true ;}
 }

@@ -10,7 +10,7 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(),new Door(),new RocketPad(), new OxygenDispenser());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(),new Door(),new RocketPad(), new OxygenDispenser(),new Pool());
 		GameMap gameMap;
 
 		List<String> map = Arrays.asList(
@@ -20,7 +20,7 @@ public class Application {
 				"....#...|....|....#....",
 				"....#####....######....",
 				".......................",
-				".......................",
+				"......................*",
 				".......................",
 				".......................",
 				"....................##.",
@@ -36,17 +36,23 @@ public class Application {
 		Key key = k. newInventoryItem("Key",'K');
 		Item rocketEngine = rocketEng.newInventoryItem("Rocket Engine",'<');
 		SpaceSuit s_suit = new SpaceSuit("Space Suit",'S');
+		WaterPistol pistol = new WaterPistol("Water Pistol", 'P');
+		OxygenTank oxygenTank = new OxygenTank("Oxygen Tank",'T');
+
 
 
 //		gameMap.addItem(s_suit,19,10);
 
 
-		Actor player = new Player("Player", '@', 1, 100);
+		Actor player = new ExtendedPlayer("Player", '@', 1, 100);
 		//world.addPlayer(player, gameMap, 0,0);
 		player.addItemToInventory(rocketPlan);
 		player.addItemToInventory(rocketEng);
 		player.addItemToInventory(rocketBody);
+		player.addItemToInventory(oxygenTank);
+		player.addItemToInventory(oxygenTank);
 		player.addItemToInventory(s_suit);
+
 		world.addPlayer(player, gameMap, 8,22);
 		
 
@@ -71,9 +77,9 @@ public class Application {
 		ninja.addItemToInventory(key);
 
 		//adding MiniBoss inside a locked room, MiniBoss has rocket engine
-//		MiniBoss miniBoss = new MiniBoss("Doctor Maybe" , player);
-//		gameMap.addActor(miniBoss, 15,2);
-//		miniBoss.addItemToInventory(rocketEngine);
+		MiniBoss miniBoss = new MiniBoss("Doctor Maybe" , player);
+		gameMap.addActor(miniBoss, 15,2);
+		miniBoss.addItemToInventory(rocketEngine);
 
 		//adding Q to game map, Q has rocket body
 		Q q = new Q("Q" , player);
@@ -83,7 +89,6 @@ public class Application {
 		//adding rocket plan inside a locked room
 		gameMap.addItem(rocketPlan,6,2);
 
-		
 		world.run();
 	}
 

@@ -17,7 +17,7 @@ public class OxygenTank extends Item {
     }
 
     public int oxygen_depletion(){
-
+        System.out.println(oxygen_point);
         if (oxygen_point == 0){
             return -1;
         }
