@@ -10,9 +10,15 @@ import edu.monash.fit2099.engine.*;
  */
 public class BuildRocket extends Action {
 	private Display printResult = new Display();
-	private Rocket rocket = new Rocket("Rocket", '~');
-	public BuildRocket() {}
-
+	//private Rocket rocket = new Rocket("Rocket", '~');
+	private static GameMap earthMapObj;
+	private static GameMap moonMapObj;
+	
+	public BuildRocket(GameMap earthMap,GameMap moonMap) {
+		earthMapObj = earthMap;
+		moonMapObj = moonMap;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 *
@@ -24,7 +30,8 @@ public class BuildRocket extends Action {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		List<Item> inventoryItems = actor.getInventory();
-
+		Rocket rocket = new Rocket("Rocket", '~');
+		rocket.setMap(earthMapObj, moonMapObj);
 		//removing both Rocket Engine and Rocket Body from player's item inventory once the player chosen the build rocket action
 		for (int i =0; i<inventoryItems.size(); i++){
             if(inventoryItems.get(i).getDisplayChar() == '<') { //Rocket Engine
@@ -45,6 +52,7 @@ public class BuildRocket extends Action {
 		Location placeRocketLocationRef = map.at(22, 10); //getting the location reference of rocketPad
 		map.add(new Floor(), placeRocketLocationRef); //remove rocketPad from map
 		map.addItem(rocket, 22, 10); //add rocket item on map at the location of rocketPad
+		moonMapObj.addItem(rocket, 22, 10);
 		return "ROCKET BUILT, PLAYER ACHIEVED GOAL OF THE GAME";
 	}
 

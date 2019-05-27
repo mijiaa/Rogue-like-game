@@ -3,6 +3,7 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
@@ -13,6 +14,29 @@ import java.util.List;
  * Class representing a RocketPad
  */
 public class RocketPad extends Ground {
+	private static GameMap earthMapObj;
+	private static GameMap moonMapObj;
+	
+	
+	public void setMap(GameMap earthMap,GameMap moonMap) {
+		earthMapObj = earthMap;
+		moonMapObj = moonMap;
+		/*
+		System.out.println("Inside Rocket Pad");
+		System.out.println(moonMap);
+		System.out.println(earthMap);
+		System.out.println("Inside Rocket Pad");
+		*/
+	}
+	
+	public GameMap getEarthMap() {
+		return earthMapObj;
+	}
+	
+	public GameMap getMoonMap() {
+		return moonMapObj;
+	}
+	
 	private int canBuildRocket = 0;
 	/**
 	 * Constructor.
@@ -47,7 +71,12 @@ public class RocketPad extends Ground {
 	 */
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction){
-
+		/*
+		System.out.println("Inside Rocket Pad2");
+		System.out.println(moonMapObj);
+		System.out.println(earthMapObj);
+		System.out.println("Inside Rocket Pad2");
+		*/
 		canBuildRocket = 0; //indicator to determine whether the player fulfil the requirements to build rocket
 		List<Item> item = actor.getInventory(); //accessing the player's item inventory
 		
@@ -64,7 +93,7 @@ public class RocketPad extends Ground {
 		//if player has both Rocket Body and Rocket Engine,add new actions of building rocket to player
 		if(canBuildRocket >= 2) {
 			Actions buildRocketActions = new Actions();
-			Action buildRocketAction = new BuildRocket();
+			Action buildRocketAction = new BuildRocket(earthMapObj,moonMapObj);
 			buildRocketActions.add(buildRocketAction);
 			return buildRocketActions;
 		}

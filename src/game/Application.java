@@ -8,11 +8,14 @@ import edu.monash.fit2099.engine.*;
 public class Application {
 
 	public static void main(String[] args) {
-		World world = new World(new Display());
-
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(),new Door(),new RocketPad(), new OxygenDispenser(),new Pool());
+		ExtendedWorld world = new ExtendedWorld(new Display());
+		
 		GameMap gameMap;
-
+		GameMap moonMap;
+		RocketPad rocketPlatform = new RocketPad();
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(),new Door(),rocketPlatform, new OxygenDispenser(),new Pool());
+		
+		
 		List<String> map = Arrays.asList(
 				"..O....................",
 				"....#####....######....",
@@ -25,9 +28,28 @@ public class Application {
 				".......................",
 				"....................##.",
 				"....................#.X");
+		
+		List<String> moonmap = Arrays.asList(
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................");
+		
 		gameMap = new GameMap(groundFactory, map);
+		moonMap = new GameMap(groundFactory, moonmap);
+		//rocketPlatform.setMap(gameMap, moonMap);
 		world.addMap(gameMap);
-
+		world.addMap(moonMap);
+		rocketPlatform.setMap(gameMap, moonMap);
+		
+		
 		//Declaring instances for new Rocket objects and key
 		Rocket rocketPlan = new Rocket("Rocket Plan",'-');
 		Rocket rocketEng = new Rocket ("Rocket Engine" ,'<');
@@ -53,9 +75,11 @@ public class Application {
 		player.addItemToInventory(oxygenTank);
 		player.addItemToInventory(s_suit);
 
-		world.addPlayer(player, gameMap, 8,22);
 		
-
+		//world.addPlayer(player, gameMap, 8,22);
+		world.addPlayer(player, gameMap, 8,22);
+						
+		
 		//adding grunts to game map, grunts has key
 		Grunt grunt = new Grunt("Mongo", player); 
 		gameMap.addActor(grunt, 4, 8);
@@ -88,7 +112,8 @@ public class Application {
 
 		//adding rocket plan inside a locked room
 		gameMap.addItem(rocketPlan,6,2);
-
+		
+		
 		world.run();
 	}
 
