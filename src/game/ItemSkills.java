@@ -1,5 +1,5 @@
 package game;
 
 public enum ItemSkills {
-    BREATH, SHOOT, LOADED, UNLOADED
+    BREATH, SHOOT, LOADED, UNLOADED,EXOSKELETON
 }

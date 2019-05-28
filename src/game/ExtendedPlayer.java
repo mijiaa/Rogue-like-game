@@ -49,8 +49,6 @@ public class ExtendedPlayer extends Player {
             Location moonLocationRef = moonMapObj.at(22, 10);
             moonMapObj.moveActor(this,moonLocationRef);
         }
-
-
         return showMenu(actions, display);
     }
 
