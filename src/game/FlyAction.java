@@ -42,19 +42,21 @@ public class FlyAction extends Action{
 		if(map == earthMapObj && s_suit) {
 			Location moonLocationRef = moonMapObj.at(22, 10);
 			moonMapObj.moveActor(actor,moonLocationRef);
-			System.out.println("earth");
+			//System.out.println("earth");
+			return "Fly to Moon";
 		}
 		
 		else if (map == moonMapObj && s_suit) {
 			Location earthLocationRef = earthMapObj.at(22, 10);
 			earthMapObj.moveActor(actor,earthLocationRef);
-			System.out.println("moon");
+			//System.out.println("moon");
+			return "Fly to Earth";
 		}
 		else {
 			return "---------- You need a Space Suit ! ------------";
 		}
 
-		return null;
+		//return menuDescription(actor);
 		//Location moonLocationRef = moonMapObj.at(22, 10);
 		//Location earthLocationRef = earthMapObj.at(22, 10);
 		//moonMapObj.moveActor(actor,moonLocationRef);

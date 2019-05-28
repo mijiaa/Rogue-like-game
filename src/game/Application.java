@@ -58,7 +58,7 @@ public class Application {
 		Key key = k. newInventoryItem("Key",'K');
 		Item rocketEngine = rocketEng.newInventoryItem("Rocket Engine",'<');
 		SpaceSuit s_suit = new SpaceSuit("Space Suit",'S');
-		WaterPistol pistol = new WaterPistol("Water Pistol", 'P');
+		WaterPistol waterPistol = new WaterPistol("Water Pistol", 'P');
 		OxygenTank oxygenTank = new OxygenTank("Oxygen Tank",'T');
 
 
@@ -88,18 +88,31 @@ public class Application {
 		Grunt grunt2 = new Grunt("Norbert", player); 
 		gameMap.addActor(grunt2,  10, 3);
 		grunt2.addItemToInventory(key);
-
+		
+		Grunt grunt3 = new Grunt("Gary", player); 
+		moonMap.addActor(grunt3,  10, 3);
+		
+		
 		//adding goon to game map, goon has key
 		Goon goon = new Goon("Robert",player);
 		gameMap.addActor(goon, 0, 10);
 		//gameMap.addActor(goon, 22, 7); //test when player is knocked out
 		goon.addItemToInventory(key);
-
+		
+		Goon goon2 = new Goon("Paul",player);
+		moonMap.addActor(goon2, 0, 10);
+		//gameMap.addActor(goon, 22, 7); //test when player is knocked out	
+		
 		//adding ninja to game map
 		Ninja ninja = new Ninja("Naruto",player);
 		gameMap.addActor(ninja, 15, 8);
 		ninja.setOriLocation(gameMap);
 		ninja.addItemToInventory(key);
+		
+		Ninja ninja2 = new Ninja("Sasuke",player);
+		moonMap.addActor(ninja2, 15, 8);
+		ninja2.setOriLocation(moonMap);
+		ninja2.addItemToInventory(key);
 
 		//adding MiniBoss inside a locked room, MiniBoss has rocket engine
 		MiniBoss miniBoss = new MiniBoss("Doctor Maybe" , player);
@@ -111,8 +124,10 @@ public class Application {
 		gameMap.addActor(q ,11, 6);
 		q.addItemToInventory(rocketBody);
 		
+		moonMap.addItem(waterPistol, 22, 5);
 		//adding rocket plan inside a locked room
 		gameMap.addItem(rocketPlan,6,2);
+		
 		
 		
 		world.run();
