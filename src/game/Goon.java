@@ -41,6 +41,7 @@ public class Goon extends Actor {
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(10, "punches");
+		//return new IntrinsicWeapon(10000, "punches"); //test when player is knocked out
 	}
 
 	/**

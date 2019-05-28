@@ -92,6 +92,7 @@ public class Application {
 		//adding goon to game map, goon has key
 		Goon goon = new Goon("Robert",player);
 		gameMap.addActor(goon, 0, 10);
+		//gameMap.addActor(goon, 22, 7); //test when player is knocked out
 		goon.addItemToInventory(key);
 
 		//adding ninja to game map
@@ -109,7 +110,7 @@ public class Application {
 		Q q = new Q("Q" , player);
 		gameMap.addActor(q ,11, 6);
 		q.addItemToInventory(rocketBody);
-
+		
 		//adding rocket plan inside a locked room
 		gameMap.addItem(rocketPlan,6,2);
 		

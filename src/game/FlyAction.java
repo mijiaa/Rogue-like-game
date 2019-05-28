@@ -46,15 +46,16 @@ public class FlyAction extends Action{
 			*/
 			Location moonLocationRef = moonMapObj.at(22, 10);
 			moonMapObj.moveActor(actor,moonLocationRef);
+			return "Fly to Moon";
 		}
 		
 		if(map == moonMapObj) {
 			Location earthLocationRef = earthMapObj.at(22, 10);
 			earthMapObj.moveActor(actor,earthLocationRef);
-			
+			return "Fly to Earth";
 		}
 		
-		return null;
+		return menuDescription(actor);
 		//Location moonLocationRef = moonMapObj.at(22, 10);
 		//Location earthLocationRef = earthMapObj.at(22, 10);
 		//moonMapObj.moveActor(actor,moonLocationRef);
@@ -69,7 +70,7 @@ public class FlyAction extends Action{
 	@Override
 	public String hotKey() {
 		// TODO Auto-generated method stub
-		return "12";
+		return "21";
 	}
 
 	public void fly(){this.moon =true ;}
