@@ -17,7 +17,7 @@ public class Application {
 		
 		
 		List<String> map = Arrays.asList(
-				"..O....................",
+				".......................",
 				"....#####....######....",
 				"....#...#....#....#....",
 				"....#...|....|....#....",
@@ -25,7 +25,7 @@ public class Application {
 				".......................",
 				"......................*",
 				".......................",
-				".......................",
+				".....................O.",
 				"....................##.",
 				"....................#.X");
 		
@@ -60,6 +60,7 @@ public class Application {
 		SpaceSuit s_suit = new SpaceSuit("Space Suit",'S');
 		WaterPistol pistol = new WaterPistol("Water Pistol", 'P');
 		OxygenTank oxygenTank = new OxygenTank("Oxygen Tank",'T');
+		pistol.addSkill(ItemSkills.LOADED);
 
 
 
@@ -72,7 +73,8 @@ public class Application {
 		player.addItemToInventory(rocketEng);
 		player.addItemToInventory(rocketBody);
 		player.addItemToInventory(oxygenTank);
-		//player.addItemToInventory(oxygenTank);
+//		player.addItemToInventory(oxygenTank);
+		player.addItemToInventory(pistol);
 		player.addItemToInventory(s_suit);
 
 		
@@ -110,7 +112,9 @@ public class Application {
 		Q q = new Q("Q" , player);
 		gameMap.addActor(q ,11, 6);
 		q.addItemToInventory(rocketBody);
-		
+
+		FinalBoss yugo_m = new FinalBoss("Yugo Maxx" , player);
+		moonMap.addActor(yugo_m, 19,10);
 		//adding rocket plan inside a locked room
 		gameMap.addItem(rocketPlan,6,2);
 		

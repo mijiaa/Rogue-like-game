@@ -39,11 +39,11 @@ public class GetOxygenTank extends Action {
 
     /**
      *{@inheritDoc}
-     * @return hotKey as 12 as a string on menu
+     * @return hotKey as 0 as a string on menu
      */
     @Override
     public String hotKey() {
-        return "12";
+        return "0";
     }
 }
 

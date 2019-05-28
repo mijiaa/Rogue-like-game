@@ -47,23 +47,6 @@ public class ExtendedPlayer extends Player {
 	            System.out.println(oxygen_point);
 	        }
 	        if (oxygen_point == -1) {
-	            //Location moonLocationRef = moonMapObj.at(22, 10);
-	            //moonMapObj.moveActor(this,moonLocationRef);
-	        	/*
-	        	System.out.println(moonMapObj); 
-	        	System.out.println(earthMapObj);
-	        	map.removeActor(this);
-	            map.addActor(this, 22, 10);
-	            System.out.println("HEREW");
-	            //Location moonLocationRef = map.at(22, 10);
-	            //System.out.println(map.actorAt(moonLocationRef).toString());
-	            System.out.println(display.toString());
-	            */
-	        	//Location earthLocationRef = earthMapObj.at(22, 10);
-	        	//earthMapObj.moveActor(this,earthLocationRef);
-	            
-	            //Actions flyActions = new Actions();
-	    		//Action flyAction = new FlyToMoon();
 	        	if (counter > 0) {
 	        		Action flyToEarthAction = new FlyAction(earthMapObj,moonMapObj);
 	        		actions.add(flyToEarthAction);
@@ -74,28 +57,10 @@ public class ExtendedPlayer extends Player {
 	    				}
 	    			}    			
 	        	}
-	        	
-	        	//Action flyToEarthAction = new FlyToEarth(earthMapObj,moonMapObj);
-	    		//actions.add(flyToEarthAction);
 	    		counter += 1;
-	    		//moonMapObj.removeActor(this);
-	    		//earthMapObj.addActor(this, 22, 10);
-	        	//for(int i=0;i<actions.size();i++) {
-	        		//if(actions.get(i).menuDescription(this).equalsIgnoreCase("Fly To Earth")) {	
-	        			//return actions.get(i);
-					//}
-				//}
-	        	
-	        	
 	        }
     	}
-        /*
-        Location moonLocationRef = map.at(22, 10);
-        if(map.actorAt(moonLocationRef) != null) {
-        	System.out.println("YOOO");
-        	System.out.println(map.actorAt(moonLocationRef).toString());
-        }
-        */
+
         return showMenu(actions, display);
     }
 
@@ -114,6 +79,19 @@ public class ExtendedPlayer extends Player {
     	//moonMapObj.moveActor(this,moonLocationRef);
         return oxygen_point - 1;
     }
+
+//    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
+//        Actions actions = super.getAllowableActions(otherActor,direction,map);
+////        List<Item> player_items = this.getInventory();
+//        Action shoot = new ShootWater(otherActor);
+//        actions.clear();
+//
+//        if(otherActor.getClass() == FinalBoss.class ){
+//            actions.add(shoot);
+//        }
+//        return actions;
+//    }
+
 
     public void atMoon(boolean moon, GameMap earthMap,GameMap moonMap) {
         this.moon = moon;
