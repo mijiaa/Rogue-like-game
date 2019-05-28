@@ -69,7 +69,7 @@ public class FlyAction extends Action{
 	@Override
 	public String hotKey() {
 		// TODO Auto-generated method stub
-		return "12";
+		return "21";
 	}
 
 	public void fly(){this.s_suit =true ;}
