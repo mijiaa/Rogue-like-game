@@ -74,7 +74,7 @@ public class Q extends Actor {
         Action give = new GivePlans(this ,rocketPlan, rocketBody);
         actions.clear();
 
-        if(otherActor.getClass() ==Player.class ){
+        if(otherActor.getClass() ==ExtendedPlayer.class ){
             if (checkItemList(player_items)) {
                 actions.add(talk);
                 actions.add(give);

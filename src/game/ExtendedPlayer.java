@@ -29,19 +29,20 @@ public class ExtendedPlayer extends Player {
 
 
     public Action playTurn(Actions actions, GameMap map, Display display) {
+        List<Item> items = this.getInventory();
+        for (Item item : items) {
+            if (item.getDisplayChar() == 'K'){
+                this.addSkill(ItemSkills.UNLOCK);
+            }
+        }
     	
     	if(map == moonMapObj) {
-	        List<Item> items = this.getInventory();
-	
-	        System.out.println(oxy_tanks);
-	
 	        for (Item item : items) {
-	            if (item.hasSkill(ItemSkills.BREATH)) {
-	                System.out.println(item);
-	                oxy_tanks.add(item);
-	                this.removeItemFromInventory(item);
-	            }
-	        }
+                if (item.hasSkill(ItemSkills.BREATH)) {
+                    oxy_tanks.add(item);
+                    this.removeItemFromInventory(item);
+                }
+            }
 	        if (moon) {
 	            oxygen_point = oxygen_depletion();
 	            System.out.println(oxygen_point);
@@ -52,7 +53,8 @@ public class ExtendedPlayer extends Player {
 	        		actions.add(flyToEarthAction);
 	        		counter = 0;
 	            	for(int i=0;i<actions.size();i++) {
-	            		if(actions.get(i).menuDescription(this).equalsIgnoreCase("Fly")) {	
+	            		if(actions.get(i).menuDescription(this).equalsIgnoreCase("Fly")) {
+	            		    oxygen_point = 10;
 	            			return actions.get(i);
 	    				}
 	    			}    			
@@ -80,17 +82,6 @@ public class ExtendedPlayer extends Player {
         return oxygen_point - 1;
     }
 
-//    public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
-//        Actions actions = super.getAllowableActions(otherActor,direction,map);
-////        List<Item> player_items = this.getInventory();
-//        Action shoot = new ShootWater(otherActor);
-//        actions.clear();
-//
-//        if(otherActor.getClass() == FinalBoss.class ){
-//            actions.add(shoot);
-//        }
-//        return actions;
-//    }
 
 
     public void atMoon(boolean moon, GameMap earthMap,GameMap moonMap) {

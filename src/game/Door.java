@@ -25,11 +25,8 @@ public class Door extends Ground {
      */
     @Override
     public boolean canActorEnter(Actor actor) {
-        List<Item> item = actor.getInventory();
-        for (int i =0; i<item.size(); i++){
-            if (item.get(i).getClass() == game.Key.class) {
-                return true;
-            }
+        if (actor.hasSkill(ItemSkills.UNLOCK)){
+            return true;
         }
         return false;
     }

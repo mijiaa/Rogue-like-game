@@ -18,7 +18,7 @@ public class ExtendedWorld extends World {
 		super(display);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public void run() {
 		if(player == null)
 			throw new IllegalStateException();
@@ -71,20 +71,10 @@ public class ExtendedWorld extends World {
 			quitGame.addActorLocations(actorLocations);
 			actions.add(quitGame);
 		}
-		/*
-		QuitGameAction quitGame = new QuitGameAction();
-		quitGame.addActorLocations(actorLocations);
-		actions.add(quitGame);
-		*/
+
 		actions.add(new SkipTurnAction());
 		
-		/*
-		QuitGameAction quitGame = new QuitGameAction();
-		quitGame.addActorLocations(actorLocations);
-		actions.add(quitGame);
-		*/
-		//actions.add(new QuitGameAction());
-		
+
 		Action action = actor.playTurn(actions, map, display);
 		String result = action.execute(actor, map);
 		display.println(result);

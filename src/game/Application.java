@@ -23,11 +23,11 @@ public class Application {
 				"....#...|....|....#....",
 				"....#####....######....",
 				".......................",
-				"......................*",
 				".......................",
-				".....................O.",
-				"....................##.",
-				"....................#.X");
+				".......................",
+				"....................O..",
+				"....................###",
+				".........*..........|.X");
 		
 		List<String> moonmap = Arrays.asList(
 				".......................",
@@ -44,7 +44,6 @@ public class Application {
 		
 		gameMap = new GameMap(groundFactory, map);
 		moonMap = new GameMap(groundFactory, moonmap);
-		//rocketPlatform.setMap(gameMap, moonMap);
 		world.addMap(gameMap);
 		world.addMap(moonMap);
 		rocketPlatform.setMap(gameMap, moonMap);
@@ -59,27 +58,28 @@ public class Application {
 		Item rocketEngine = rocketEng.newInventoryItem("Rocket Engine",'<');
 		SpaceSuit s_suit = new SpaceSuit("Space Suit",'S');
 		WaterPistol pistol = new WaterPistol("Water Pistol", 'P');
-		OxygenTank oxygenTank = new OxygenTank("Oxygen Tank",'T');
+		//OxygenTank oxygenTank = new OxygenTank("Oxygen Tank",'T');
 		pistol.addSkill(ItemSkills.LOADED);
 
 
 
-//		gameMap.addItem(s_suit,19,10);
+		gameMap.addItem(s_suit,5,10);
 
 
 		Actor player = new ExtendedPlayer("Player", '@', 1, 100);
-		//world.addPlayer(player, gameMap, 0,0);
+
 		player.addItemToInventory(rocketPlan);
 		player.addItemToInventory(rocketEng);
 		player.addItemToInventory(rocketBody);
-		player.addItemToInventory(oxygenTank);
+		//player.addItemToInventory(oxygenTank);
 //		player.addItemToInventory(oxygenTank);
 		player.addItemToInventory(pistol);
 		player.addItemToInventory(s_suit);
+		player.addItemToInventory(key);
 
 		
 		//world.addPlayer(player, gameMap, 8,22);
-		world.addPlayer(player, gameMap, 8,22);
+		world.addPlayer(player, gameMap, 10,18);
 						
 		
 		//adding grunts to game map, grunts has key

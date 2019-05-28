@@ -38,21 +38,12 @@ public class OxygenDispenser extends Ground {
      *and add new BuildRocket action to player
      */
     @Override
-    public Actions allowableActions(Actor actor, Location location, String direction){
-
-        GetOxygenTank getOxygen = new GetOxygenTank();
+    public Actions allowableActions(Actor actor, Location location, String direction) {
         Actions actions = new Actions();
         Action getOxygenTankAction = new GetOxygenTank();
         actions.add(getOxygenTankAction);
 
         return actions;
-
-        
-
-//        if(getOxygen.getTurn() == 1)
-            
-        //return new Actions();
     }
-
 }
 
