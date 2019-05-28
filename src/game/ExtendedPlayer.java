@@ -10,6 +10,8 @@ public class ExtendedPlayer extends Player {
     private ArrayList<Item> oxy_tanks = new ArrayList<>();
     private int oxygen_point =10;
     private Boolean moon= false;
+    private GameMap moonMapObj;
+    private GameMap earthMapObj;
 
     /**
      * Constructor.
@@ -39,18 +41,26 @@ public class ExtendedPlayer extends Player {
                 this.removeItemFromInventory(item);
             }
         }
-        if (moon){
+        if (moon) {
             oxygen_point = oxygen_depletion();
             System.out.println(oxygen_point);
         }
+        if (oxygen_point == -1) {
+            Location moonLocationRef = moonMapObj.at(22, 10);
+            moonMapObj.moveActor(this,moonLocationRef);
+        }
+
 
         return showMenu(actions, display);
     }
 
     public int oxygen_depletion(){
+        if (oxy_tanks.isEmpty()){
+            return -1;
+        }
         if (oxygen_point <= 0){
             oxy_tanks.remove(oxy_tanks.get(0));
-            // MoveActorLocation
+
             if (!oxy_tanks.isEmpty()){
                 return 10;
             }
@@ -58,8 +68,15 @@ public class ExtendedPlayer extends Player {
         return oxygen_point - 1;
     }
 
-    public void atMoon(boolean moon) {
+    public void atMoon(boolean moon, GameMap earthMap,GameMap moonMap) {
         this.moon = moon;
+        this.moonMapObj = moonMap;
+        this.earthMapObj = earthMap;
     }
+
+//    public void safety_transfer(Actor actor, Location safety_location, GameMap map ){
+//        map.moveActor(this,safety_location);
+//    }
+
 
 }

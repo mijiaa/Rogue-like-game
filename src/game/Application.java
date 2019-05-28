@@ -72,7 +72,7 @@ public class Application {
 		player.addItemToInventory(rocketEng);
 		player.addItemToInventory(rocketBody);
 		player.addItemToInventory(oxygenTank);
-		player.addItemToInventory(oxygenTank);
+		//player.addItemToInventory(oxygenTank);
 		player.addItemToInventory(s_suit);
 
 		

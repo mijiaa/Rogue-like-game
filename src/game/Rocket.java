@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.Item;
  * Inherited from Item class to have its properties and methods
  */
 public class Rocket extends Item {
-	//new MoonBase(actor,map);
+
 	private static GameMap earthMapObj;
 	private static GameMap moonMapObj;
 	
@@ -21,6 +21,7 @@ public class Rocket extends Item {
     }
     
     public void setMap(GameMap earthMap,GameMap moonMap) {
+
 		earthMapObj = earthMap;
 		moonMapObj = moonMap;
 	}
@@ -40,8 +41,5 @@ public class Rocket extends Item {
     	else {
     		return allowableActions;
     	}
-    	   
     }
-    
-    
 }

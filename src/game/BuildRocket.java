@@ -53,7 +53,7 @@ public class BuildRocket extends Action {
 		map.add(new Floor(), placeRocketLocationRef); //remove rocketPad from map
 		map.addItem(rocket, 22, 10); //add rocket item on map at the location of rocketPad
 		moonMapObj.addItem(rocket, 22, 10);
-		return "ROCKET BUILT, PLAYER ACHIEVED GOAL OF THE GAME";
+		return "ROCKET BUILT!!";
 	}
 
 	/**

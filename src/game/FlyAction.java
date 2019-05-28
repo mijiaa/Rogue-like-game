@@ -12,7 +12,7 @@ public class FlyAction extends Action{
 	private static GameMap earthMapObj;
 	private static GameMap moonMapObj;
 	SpaceSuit ss;
-	Boolean moon = false;
+	Boolean s_suit = false;
 	ExtendedPlayer player;
 	
 	public FlyAction(GameMap earthMap,GameMap moonMap) {
@@ -24,38 +24,37 @@ public class FlyAction extends Action{
 	public String execute(Actor actor, GameMap map) {
 		// TODO Auto-generated method stub
 		//System.out.println(map.moveActor(actor, newLocation););
-		if(map == earthMapObj) {
-			/*
-			List<Item> items  = actor.getInventory();
 
-			for (Item item: items){
-				if (item.getDisplayChar() == 'S'){
-					ss = (SpaceSuit) item;
-				}
+
+		List<Item> items  = actor.getInventory();
+		for (Item item: items){
+			if (item.getDisplayChar() == 'S'){
+				ss = (SpaceSuit) item;
 			}
-			if (items.contains(ss)) {
-	            fly();
-	            player=  (ExtendedPlayer) actor;
-	            player.atMoon(moon);
-	            Location moonLocationRef = moonMapObj.at(22, 10);
-				moonMapObj.moveActor(actor,moonLocationRef);
-			}
-			else {
-				return "---------- You need a Space Suit ! ------------";
-			}
-			*/
+		}
+		if (items.contains(ss)) {
+			fly();
+			player = (ExtendedPlayer) actor;
+			player.atMoon(s_suit, earthMapObj,moonMapObj);
+
+		}
+
+		if(map == earthMapObj && s_suit) {
 			Location moonLocationRef = moonMapObj.at(22, 10);
 			moonMapObj.moveActor(actor,moonLocationRef);
-			return "Fly to Moon";
+			System.out.println("earth");
 		}
 		
-		if(map == moonMapObj) {
+		else if (map == moonMapObj && s_suit) {
 			Location earthLocationRef = earthMapObj.at(22, 10);
 			earthMapObj.moveActor(actor,earthLocationRef);
-			return "Fly to Earth";
+			System.out.println("moon");
 		}
-		
-		return menuDescription(actor);
+		else {
+			return "---------- You need a Space Suit ! ------------";
+		}
+
+		return null;
 		//Location moonLocationRef = moonMapObj.at(22, 10);
 		//Location earthLocationRef = earthMapObj.at(22, 10);
 		//moonMapObj.moveActor(actor,moonLocationRef);
@@ -70,8 +69,8 @@ public class FlyAction extends Action{
 	@Override
 	public String hotKey() {
 		// TODO Auto-generated method stub
-		return "21";
+		return "12";
 	}
 
-	public void fly(){this.moon =true ;}
+	public void fly(){this.s_suit =true ;}
 }
