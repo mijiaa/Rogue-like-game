@@ -70,6 +70,6 @@ public class BuildRocket extends Action {
 	 */
 	@Override
 	public String hotKey() {
-		return "20";
+		return "7";
 	}
 }

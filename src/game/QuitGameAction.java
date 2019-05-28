@@ -38,7 +38,7 @@ public class QuitGameAction extends Action {
 	@Override
 	public String hotKey() {
 		// TODO Auto-generated method stub
-		return "15";
+		return "1";
 	}
 	
 	

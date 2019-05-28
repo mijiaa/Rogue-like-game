@@ -10,9 +10,9 @@ public class ExtendedPlayer extends Player {
     private ArrayList<Item> oxy_tanks = new ArrayList<>();
     private int oxygen_point =10;
     private Boolean moon= false;
-    private GameMap moonMapObj;
-    private GameMap earthMapObj;
-
+    private static GameMap moonMapObj;
+    private static GameMap earthMapObj;
+    private int counter = 0;
     /**
      * Constructor.
      *
@@ -29,32 +29,79 @@ public class ExtendedPlayer extends Player {
 
 
     public Action playTurn(Actions actions, GameMap map, Display display) {
-
-        List<Item> items = this.getInventory();
-
-        System.out.println(oxy_tanks);
-
-        for (Item item : items) {
-            if (item.hasSkill(ItemSkills.BREATH)) {
-                System.out.println(item);
-                oxy_tanks.add(item);
-                this.removeItemFromInventory(item);
-            }
+    	
+    	if(map == moonMapObj) {
+	        List<Item> items = this.getInventory();
+	
+	        System.out.println(oxy_tanks);
+	
+	        for (Item item : items) {
+	            if (item.hasSkill(ItemSkills.BREATH)) {
+	                System.out.println(item);
+	                oxy_tanks.add(item);
+	                this.removeItemFromInventory(item);
+	            }
+	        }
+	        if (moon) {
+	            oxygen_point = oxygen_depletion();
+	            System.out.println(oxygen_point);
+	        }
+	        if (oxygen_point == -1) {
+	            //Location moonLocationRef = moonMapObj.at(22, 10);
+	            //moonMapObj.moveActor(this,moonLocationRef);
+	        	/*
+	        	System.out.println(moonMapObj); 
+	        	System.out.println(earthMapObj);
+	        	map.removeActor(this);
+	            map.addActor(this, 22, 10);
+	            System.out.println("HEREW");
+	            //Location moonLocationRef = map.at(22, 10);
+	            //System.out.println(map.actorAt(moonLocationRef).toString());
+	            System.out.println(display.toString());
+	            */
+	        	//Location earthLocationRef = earthMapObj.at(22, 10);
+	        	//earthMapObj.moveActor(this,earthLocationRef);
+	            
+	            //Actions flyActions = new Actions();
+	    		//Action flyAction = new FlyToMoon();
+	        	if (counter > 0) {
+	        		Action flyToEarthAction = new FlyAction(earthMapObj,moonMapObj);
+	        		actions.add(flyToEarthAction);
+	        		counter = 0;
+	            	for(int i=0;i<actions.size();i++) {
+	            		if(actions.get(i).menuDescription(this).equalsIgnoreCase("Fly")) {	
+	            			return actions.get(i);
+	    				}
+	    			}    			
+	        	}
+	        	
+	        	//Action flyToEarthAction = new FlyToEarth(earthMapObj,moonMapObj);
+	    		//actions.add(flyToEarthAction);
+	    		counter += 1;
+	    		//moonMapObj.removeActor(this);
+	    		//earthMapObj.addActor(this, 22, 10);
+	        	//for(int i=0;i<actions.size();i++) {
+	        		//if(actions.get(i).menuDescription(this).equalsIgnoreCase("Fly To Earth")) {	
+	        			//return actions.get(i);
+					//}
+				//}
+	        	
+	        	
+	        }
+    	}
+        /*
+        Location moonLocationRef = map.at(22, 10);
+        if(map.actorAt(moonLocationRef) != null) {
+        	System.out.println("YOOO");
+        	System.out.println(map.actorAt(moonLocationRef).toString());
         }
-        if (moon) {
-            oxygen_point = oxygen_depletion();
-            System.out.println(oxygen_point);
-        }
-        if (oxygen_point == -1) {
-            Location moonLocationRef = moonMapObj.at(22, 10);
-            moonMapObj.moveActor(this,moonLocationRef);
-        }
+        */
         return showMenu(actions, display);
     }
 
     public int oxygen_depletion(){
         if (oxy_tanks.isEmpty()){
-            return -1;
+        	return -1;
         }
         if (oxygen_point <= 0){
             oxy_tanks.remove(oxy_tanks.get(0));
@@ -63,6 +110,8 @@ public class ExtendedPlayer extends Player {
                 return 10;
             }
         }
+        //Location moonLocationRef = moonMapObj.at(22, 10);
+    	//moonMapObj.moveActor(this,moonLocationRef);
         return oxygen_point - 1;
     }
 
