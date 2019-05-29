@@ -19,7 +19,7 @@ public class Door extends Ground {
     /**
      * {@inheritDoc}
      *Only passable if condition are met.
-     *Conditions : actor has a key item
+     *Conditions : actor has a an UNLOCK skill
      *
      * @return true if condition is met
      */

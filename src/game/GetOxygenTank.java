@@ -3,15 +3,16 @@ package game;
 import edu.monash.fit2099.engine.*;
 
 
-
+/**
+ *New action that allow player press the button on Oxygen dispenser to get Oxygen
+ */
 public class GetOxygenTank extends Action {
 
-    private Display printResult = new Display();
     /**
      * {@inheritDoc}
-     *
-     *
-     *
+     * Dispenser produce an oxygen tank in player location on the next turn.
+     * The button does not work while the dispenser is producing the tank,
+     * or while there is an oxygen tank in the location.
      * Perform the Action.
      */
     @Override
@@ -26,7 +27,7 @@ public class GetOxygenTank extends Action {
 
 //        map.addItem(oxygenTank,map.locationOf(actor).x(),map.locationOf(actor).y());
 
-        else { return "No Action ";}
+        else {return "No Action ";}
     }
 
     /**

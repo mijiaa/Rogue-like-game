@@ -8,6 +8,9 @@ import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.Item;
 import java.util.List;
 
+/**
+ * New Action class to travel between moon and earth
+ */
 public class FlyAction extends Action{
 	private static GameMap earthMapObj;
 	private static GameMap moonMapObj;
@@ -15,7 +18,12 @@ public class FlyAction extends Action{
 	Boolean s_suit = false;
 	Boolean win = false;
 	ExtendedPlayer player;
-	
+
+	/**
+	 *
+	 * @param earthMap represents earth map object
+	 * @param moonMap represents moon map object
+	 */
 	public FlyAction(GameMap earthMap,GameMap moonMap) {
 		earthMapObj = earthMap;
 		moonMapObj = moonMap;
@@ -24,7 +32,6 @@ public class FlyAction extends Action{
 	@Override
 	public String execute(Actor actor, GameMap map) {
 		Boolean atMoonMap = false;
-		//System.out.println(map.moveActor(actor, newLocation););
 
 		List<Item> items  = actor.getInventory();
 		for (Item item: items){

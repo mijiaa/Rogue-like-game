@@ -7,6 +7,13 @@ import edu.monash.fit2099.engine.Item;
  * Inherited from Item class to have its properties and methods
  */
 public class OxygenTank extends Item {
+
+    /***
+     *
+     * @param name
+     * @param displayChar
+     * OxygenTank object created has 1 default skill, BREATH
+     */
     public OxygenTank(String name, char displayChar) {
         super(name, displayChar);
         this.addSkill(ItemSkills.BREATH);

@@ -13,7 +13,7 @@ public class Pool extends Ground {
 
     /**
      *{@inheritDoc}
-     * Do not let an actor enter
+     * Do not let an actor walk aon water
      * @return false
      */
     @Override
@@ -31,8 +31,8 @@ public class Pool extends Ground {
 
     /**
      * {@inheritDoc}
-     *This method check if player has Gun
-     *and add water Bullet for player
+     * This method add RefillWaterPistol action to the allowable actions
+     * @return actions
      */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {

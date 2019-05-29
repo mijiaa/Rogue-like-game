@@ -30,10 +30,8 @@ public class Rocket extends Item {
     public Actions getAllowableActions() {
     	
     	if(name.equalsIgnoreCase("Rocket")) {
-    		//allowableActions.clear(); 
 
     		Actions flyActions = new Actions();
-    		//Action flyAction = new FlyToMoon();
     		Action flyAction = new FlyAction(earthMapObj,moonMapObj);
     		flyActions.add(flyAction);
     		return flyActions;

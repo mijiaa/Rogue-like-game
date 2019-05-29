@@ -12,6 +12,7 @@ import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.SkipTurnAction;
 import edu.monash.fit2099.engine.World;
 
+
 public class ExtendedWorld extends World {
 
 	public ExtendedWorld(Display display) {
@@ -32,10 +33,7 @@ public class ExtendedWorld extends World {
 				if((playersMap.locationOf(actor).map()).equals(playersMap)) {
 					processActorTurn(actor);
 				}
-				//processActorTurn(actor);
 			}
-			
-			
 		}
 		display.println(endGameMessage());
 	}

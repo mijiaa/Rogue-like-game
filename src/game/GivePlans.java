@@ -52,10 +52,10 @@ public class GivePlans extends Action {
 
     /**
      *{@inheritDoc}
-     * @return hotKey as 10 as a string on menu
+     * @return hotKey as P as a string on menu
      */
     @Override
     public String hotKey() {
-        return "10";
+        return "P";
     }
 }

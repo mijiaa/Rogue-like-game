@@ -10,10 +10,14 @@ import edu.monash.fit2099.engine.*;
  */
 public class BuildRocket extends Action {
 	private Display printResult = new Display();
-	//private Rocket rocket = new Rocket("Rocket", '~');
 	private static GameMap earthMapObj;
 	private static GameMap moonMapObj;
-	
+
+	/**
+	 * Constructor.
+	 * @param earthMap represents earth map object
+	 * @param moonMap represents moon map object
+	 */
 	public BuildRocket(GameMap earthMap,GameMap moonMap) {
 		earthMapObj = earthMap;
 		moonMapObj = moonMap;
@@ -43,16 +47,14 @@ public class BuildRocket extends Action {
 				printResult.println("Player placed Rocket Body on Rocket Pad.");
             }
         }
-		//actor.addItemToInventory(rocket);
-		//Location placeRocketLocationRef = map.at(22, 10); //getting the location reference of rocketPad
-		//map.add(new RocketGround(), placeRocketLocationRef); //replace rocketPad with built Rocket
-		//return "ROCKET BUILT, PLAYER ACHIEVED GOAL OF THE GAME";
-		
-		//actor.addItemToInventory(rocket);
-		Location placeRocketLocationRef = map.at(22, 10); //getting the location reference of rocketPad
-		map.add(new Floor(), placeRocketLocationRef); //remove rocketPad from map
-		map.addItem(rocket, 22, 10); //add rocket item on map at the location of rocketPad
+		//getting the location reference of rocketPad
+		Location placeRocketLocationRef = map.at(22, 10);
+		//remove rocketPad from map
+		map.add(new Floor(), placeRocketLocationRef);
+		//add rocket item on map at the location of rocketPad
+		map.addItem(rocket, 22, 10);
 		moonMapObj.addItem(rocket, 22, 10);
+
 		return "ROCKET BUILT!!";
 	}
 

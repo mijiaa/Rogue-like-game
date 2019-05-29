@@ -21,12 +21,7 @@ public class RocketPad extends Ground {
 	public void setMap(GameMap earthMap,GameMap moonMap) {
 		earthMapObj = earthMap;
 		moonMapObj = moonMap;
-		/*
-		System.out.println("Inside Rocket Pad");
-		System.out.println(moonMap);
-		System.out.println(earthMap);
-		System.out.println("Inside Rocket Pad");
-		*/
+
 	}
 	
 	public GameMap getEarthMap() {
@@ -71,12 +66,7 @@ public class RocketPad extends Ground {
 	 */
 	@Override
 	public Actions allowableActions(Actor actor, Location location, String direction){
-		/*
-		System.out.println("Inside Rocket Pad2");
-		System.out.println(moonMapObj);
-		System.out.println(earthMapObj);
-		System.out.println("Inside Rocket Pad2");
-		*/
+
 		canBuildRocket = 0; //indicator to determine whether the player fulfil the requirements to build rocket
 		List<Item> item = actor.getInventory(); //accessing the player's item inventory
 		

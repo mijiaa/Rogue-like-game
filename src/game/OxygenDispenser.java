@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.*;
 import game.BuildRocket;
 import game.GetOxygenTank;
 
+/**
+ * Class representing an OxygenDispenser
+ */
 public class OxygenDispenser extends Ground {
     GameMap map ;
     /**
@@ -34,8 +37,7 @@ public class OxygenDispenser extends Ground {
 
     /**
      * {@inheritDoc}
-     *This method check if player has Rocket Body and RocketEngine
-     *and add new BuildRocket action to player
+     * This method add GetOxygenTank action to actor's allowable action
      */
     @Override
     public Actions allowableActions(Actor actor, Location location, String direction) {
