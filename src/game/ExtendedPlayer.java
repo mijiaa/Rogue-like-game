@@ -44,11 +44,12 @@ public class ExtendedPlayer extends Player {
         List<Item> items = this.getInventory();
         for (Item item : items) {
             if (item.getDisplayChar() == 'K'){
+                // only player can have a skill to UNLOCK
                 this.addSkill(ItemSkills.UNLOCK);
             }
         }
     	
-    	if(moon) {
+    	if (moon) {
 	        for (Item item : items) {
                 if (item.hasSkill(ItemSkills.BREATH)) {
                     oxy_tanks.add(item);
@@ -83,22 +84,22 @@ public class ExtendedPlayer extends Player {
      * @return current oxygen points
      */
     public int oxygen_depletion(){
-
+        int index_to_remove = 0;
         // if there are no more oxygen tanks, return a negative value
         if (oxy_tanks.isEmpty()){
         	return -1;
         }
 
-        //if oxygen points equal or lesser than  minimum oxygen points,
-        //discard current oxygen tank
+        //if oxygen points equal or lesser than minimum oxygen points, discard current oxygen tank
         if (oxygen_point <= MIN_OXYGEN_POINTS){
-            oxy_tanks.remove(oxy_tanks.get(0));
+            oxy_tanks.remove(oxy_tanks.get(index_to_remove));
 
-            //and if there are still oxygen tank, refuel
+            //and if there are still oxygen tanks left, refuel
             if (!oxy_tanks.isEmpty()){
                 return MAX_OXYGEN_POINTS;
             }
         }
+
         // decrement oxygen points
         return oxygen_point - 1;
     }

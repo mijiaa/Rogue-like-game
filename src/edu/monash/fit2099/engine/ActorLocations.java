@@ -22,6 +22,7 @@ public class ActorLocations implements Iterable<Actor> {
 	}
 
 	/**
+	 *
 	 * Add a new Actor at the given Location.
 	 *
 	 * @param actor the Actor to place

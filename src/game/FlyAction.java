@@ -43,44 +43,41 @@ public class FlyAction extends Action{
 		//iterating over the player's inventory to check for the existence of items
 		List<Item> items  = actor.getInventory();
 		for (Item item: items){
-
-			if (item.getDisplayChar() == 'S'){
+			if (item.hasSkill(ItemSkills.WALKONMOON)){
 				ss = (SpaceSuit) item;
+				break;
 			}
 		}
 
+		// check if defeated final boss is picked up
 		for (Item item:items){
-			if (item.getDisplayChar() == '%'){
+			if (item.hasSkill(ItemSkills.WIN)){
 				win = true;
 				break;
 			}
 		}
 
 		if (items.contains(ss)) {
-			fly();
+			canFly();
 			player = (ExtendedPlayer) actor;
 			player.atMoon(s_suit, earthMapObj,moonMapObj);
 		}
 		
-		//if the player is currently on earth and contains space suit
+		//if the player is currently on earth and has a space suit, travel to moon
 		if(map == earthMapObj && s_suit) {
 			Location moonLocationRef = moonMapObj.at(22, 10);
 			moonMapObj.moveActor(actor,moonLocationRef);
 			atMoonMap = true;
-			player.atMoon(atMoonMap,earthMapObj,moonMapObj);
+
 		}
-		//if the player is currently on moon,contains space suit and the final boss is not defeated
+		//if the player is currently on moon,has a space suit and the final boss is not defeated, travel to earth
 		else if (map == moonMapObj && s_suit & !win) {
 			Location earthLocationRef = earthMapObj.at(22, 10);
 			earthMapObj.moveActor(actor,earthLocationRef);
-
-			player.atMoon(atMoonMap,earthMapObj,moonMapObj);
 		}
-		//if the player is currently on moon and the final boss is defeated
+		//if the player is currently on moon and the final boss is defeated, win the game
 		else if(map == moonMapObj && win) {
-
 			map.removeActor(actor);
-
 		}
 		
 		//if the player does not have a space suit
@@ -88,6 +85,7 @@ public class FlyAction extends Action{
 			return "---------- You need a Space Suit ! ------------";
 		}
 
+		player.atMoon(atMoonMap,earthMapObj,moonMapObj);
 		return null;
 
 	}
@@ -115,6 +113,6 @@ public class FlyAction extends Action{
 	/**
 	 * Method to invoke to change the boolean value of the existence of space suit
 	 */
-	public void fly(){this.s_suit =true ;}
+	public void canFly(){this.s_suit =true ;}
 
 }

@@ -15,5 +15,6 @@ public class SpaceSuit extends Item {
      */
     public SpaceSuit(String name, char displayChar) {
         super(name, displayChar);
+        this.addSkill(ItemSkills.WALKONMOON);
     }
 }

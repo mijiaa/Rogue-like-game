@@ -23,16 +23,15 @@ public class FinalBoss extends Actor {
      *
      */
     public FinalBoss (String name, Actor player){
-        super(name,'Y',3,50);
+        super(name,'Y',3,10);
         this.player = player;
-//        addBehaviour(new WanderAround());
+
         this.addSkill(ItemSkills.EXOSKELETON);
+
+        //Final boss has a skill WIN that allows player to win after defeated
+        this.addSkill(ItemSkills.WIN);
     }
     private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
-
-    private void addBehaviour(ActionFactory behaviour) {
-        actionFactories.add(behaviour);
-    }
 
     /**
      *{@inheritDoc}
