@@ -123,7 +123,8 @@ public class Ninja extends Actor {
 				if (playerLocation[1] <= yNinjaCoordinate) {
 					//move ninja one step away from player in the direction of South
 					for(int i=0;i<actionSize;i++) {
-						if(actions.get(i).menuDescription(this).equalsIgnoreCase("Naruto moves South")) {
+						//if(actions.get(i).menuDescription(this).equalsIgnoreCase("Naruto moves South")) {
+						if(actions.get(i).hotKey().toString() == "2") {
 							return actions.get(i);
 						}
 					}
@@ -133,7 +134,8 @@ public class Ninja extends Actor {
 				if (playerLocation[1] >= yNinjaCoordinate) {
 					//move ninja one step away from player in the direction of North
 					for(int i=0;i<actionSize;i++) {
-						if(actions.get(i).menuDescription(this).equalsIgnoreCase("Naruto moves North")) {
+						//if(actions.get(i).menuDescription(this).equalsIgnoreCase("Naruto moves North")) {
+						if(actions.get(i).hotKey().toString() == "8") {
 							return actions.get(i);
 						}
 					}
@@ -156,7 +158,8 @@ public class Ninja extends Actor {
 				if (playerLocation[0] <= xNinjaCoordinate) {
 					//move ninja one step away from player in the direction of East
 					for(int i=0;i<actionSize;i++) {
-						if(actions.get(i).menuDescription(this).equalsIgnoreCase("Naruto moves East")) {
+						//if(actions.get(i).menuDescription(this).equalsIgnoreCase("Naruto moves East")) {
+						if(actions.get(i).hotKey().toString() == "6") {
 							return actions.get(i);
 						}
 					}
@@ -166,7 +169,9 @@ public class Ninja extends Actor {
 				if (playerLocation[0] >= xNinjaCoordinate) {
 					//move ninja one step away from player in the direction of West
 					for(int i=0;i<actionSize;i++) {
-						if(actions.get(i).menuDescription(this).equalsIgnoreCase("Naruto moves West")) {
+						//if(actions.get(i).menuDescription(this).equalsIgnoreCase("Naruto moves West")) {
+						if(actions.get(i).hotKey().toString() == "4") {
+							//System.out.println(actions.get(i).hotKey().toString());
 							return actions.get(i);
 						}
 					}
