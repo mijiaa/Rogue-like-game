@@ -63,10 +63,10 @@ public class Q extends Actor {
         List<Item> player_items = player.getInventory();
 
         //This for loop assign valid Rocket Plan object to attribute rocketPlan
-        for(int i = 0 ; i<player_items.size() ; i++) {
+        for(Item item : player_items) {
             //Rocket Plan is only considered valid if it passes the getClass, and to.String() comparison
-            if (player_items.get(i).getClass() == Rocket.class & player_items.get(i).toString().equals("Rocket Plan")) {
-                rocketPlan = player_items.get(i);
+            if (item.getClass() == Rocket.class & item.toString().equals("Rocket Plan")) {
+                rocketPlan = item;
             }
         }
 

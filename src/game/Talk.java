@@ -35,8 +35,8 @@ public class Talk extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         List<Item> player_items = actor.getInventory();
-        for(int i = 0 ; i<player_items.size() ; i++) {
-            if (player_items.get(i).getClass() == game.Rocket.class & player_items.get(i).toString().equals( "Rocket Plan")) {
+        for(Item item : player_items) {
+            if (item.getClass() == game.Rocket.class & item.toString().equals( "Rocket Plan")) {
                 return "Hand them over, I don’t have all day!";
             }
         }

@@ -81,14 +81,14 @@ public class RocketPad extends Ground {
 	public Actions allowableActions(Actor actor, Location location, String direction){
 
 		canBuildRocket = 0; //indicator to determine whether the player fulfil the requirements to build rocket
-		List<Item> item = actor.getInventory(); //accessing the player's item inventory
+		List<Item> items_list = actor.getInventory(); //accessing the player's item inventory
 		
 		//iterate over player's item inventory to check whether the player contains Rocket Engine and Rocket Body
-		for (int i =0; i<item.size(); i++){           
-            if(item.get(i).getDisplayChar() == '<') { //Rocket Engine
+		for (Item item : items_list){
+            if(item.getDisplayChar() == '<') { //Rocket Engine
             	canBuildRocket += 1;
             }
-            if(item.get(i).getDisplayChar() == '>') { //Rocket Body
+            if(item.getDisplayChar() == '>') { //Rocket Body
             	canBuildRocket += 1;
             }
         }

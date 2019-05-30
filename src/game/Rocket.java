@@ -45,7 +45,6 @@ public class Rocket extends Item {
     public Actions getAllowableActions() {
     	
     	if(name.equalsIgnoreCase("Rocket")) {
-
     		Actions flyActions = new Actions();
     		Action flyAction = new FlyAction(earthMapObj,moonMapObj,actorLocationObj);
     		flyActions.add(flyAction);

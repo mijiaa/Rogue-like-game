@@ -12,13 +12,14 @@ public class ExtendedPlayer extends Player {
 
     private ArrayList<Item> oxy_tanks = new ArrayList<>();
     private int oxygen_point =10;
-    private Boolean moon= false;
+    private Boolean isAtMoon = false;
     private static GameMap moonMapObj;
     private static GameMap earthMapObj;
     private static ActorLocations actorLocationObj;
     private static final int MIN_OXYGEN_POINTS = 0;
     private static final int MAX_OXYGEN_POINTS = 10;
     private int counter = 0;
+    private Display display;
     /**
      * Constructor.
      *
@@ -34,9 +35,9 @@ public class ExtendedPlayer extends Player {
 
     /**
      * {@inheritDoc}
-     * This method decrement oxygen life point every turn  at moon and
+     * This method decrement oxygen life point every turn  at isAtMoon and
      * provide a safety system to transport player automatically
-     * them back to the rocket’s location on Earth If the player runs out of oxygen on the moon
+     * them back to the rocket’s location on Earth If the player runs out of oxygen on the isAtMoon
      * @return action
      */
     @Override
@@ -50,26 +51,30 @@ public class ExtendedPlayer extends Player {
             }
         }
     	
-    	if (moon) {
+    	if (isAtMoon) {
 	        for (Item item : items) {
-                if (item.hasSkill(ItemSkills.BREATH)) {
+                if (item.hasSkill(ItemSkills.OXYGEN)) {
+                    // adding all oxygen tank from player list into another list
                     oxy_tanks.add(item);
                     this.removeItemFromInventory(item);
                 }
             }
 
+	        //Start oxygen point depletion when player at moon and print it each turn
 	        oxygen_point = oxygen_depletion();
-	        System.out.println("Current Oxygen Lifepoint : " + oxygen_point);
+	        display.println("Current oxygen points : " + oxygen_point);
 
 	        if (oxygen_point == -1) {
 	        	if (counter > 0) {
 	        		Action flyToEarthAction = new FlyAction(earthMapObj,moonMapObj,actorLocationObj);
 	        		actions.add(flyToEarthAction);
 	        		counter = 0;
-	            	for(int i=0;i<actions.size();i++) {
-	            		if(actions.get(i).menuDescription(this).equalsIgnoreCase("Fly")) {
-	            		    oxygen_point = 10;
-	            			return actions.get(i);
+
+	            	for(Action action : actions) {
+	            		if(action.menuDescription(this).equalsIgnoreCase("Fly")) {
+	            		    // reset oxygen point
+	            		    oxygen_point = MAX_OXYGEN_POINTS;
+	            			return action;
 	    				}
 	    			}    			
 	        	}
@@ -107,13 +112,13 @@ public class ExtendedPlayer extends Player {
 
 
     /**
-     * This method checks if actor is at moon and act as setters for earth and moon map objects
-     * @param moon
+     * This method checks if actor is at isAtMoon and act as setters for earth and isAtMoon map objects
+     * @param isAtMoon
      * @param earthMap
      * @param moonMap
      */
-    public void atMoon(boolean moon, GameMap earthMap,GameMap moonMap,ActorLocations actorLocat) {
-        this.moon = moon;
+    public void atMoon(boolean isAtMoon, GameMap earthMap,GameMap moonMap,ActorLocations actorLocat) {
+        this.isAtMoon = isAtMoon;
         this.moonMapObj = moonMap;
         this.earthMapObj = earthMap;
         this.actorLocationObj = actorLocat;

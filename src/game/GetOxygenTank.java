@@ -11,22 +11,17 @@ public class GetOxygenTank extends Action {
     /**
      * {@inheritDoc}
      * Dispenser produce an oxygen tank in player location on the next turn.
-     * The button does not work while the dispenser is producing the tank,
-     * or while there is an oxygen tank in the location.
+     * The button does not work while there is an oxygen tank in the location.
      * Perform the Action.
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-
         OxygenTank oxygenTank = new OxygenTank("Oxygen Tank",'T');
         Location location = map.locationOf(actor);
         if (location.getItems().isEmpty()){
             location.addItem(oxygenTank);
             return "Oxygen tank produced";
         }
-
-//        map.addItem(oxygenTank,map.locationOf(actor).x(),map.locationOf(actor).y());
-
         else {return "No Action ";}
     }
 

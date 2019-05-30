@@ -31,7 +31,6 @@ public class RefillWaterPistol extends Action {
             if (item.hasSkill(ItemSkills.UNLOADED)){
                 item.removeSkill(ItemSkills.UNLOADED);
                 item.addSkill(ItemSkills.LOADED);
-                System.out.println(item.getClass());
                 return "Your pistol is refilled";
             }
         }

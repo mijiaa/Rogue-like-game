@@ -63,7 +63,6 @@ public class FlyAction extends Action{
 		if (items.contains(ss)) {
 			canFly();
 			player = (ExtendedPlayer) actor;
-			//player.atMoon(s_suit, earthMapObj,moonMapObj,actorLocationObj);
 		}
 
 		//if the player is currently on earth and has a space suit, travel to moon
@@ -71,7 +70,6 @@ public class FlyAction extends Action{
 			Location moonLocationRef = moonMapObj.at(22, 10);
 			moonMapObj.moveActor(actor,moonLocationRef);
 			atMoonMap = true;
-			//player.atMoon(atMoonMap,earthMapObj,moonMapObj,actorLocationObj);
 
 		}
 		//if the player is currently on moon,has a space suit and the final boss is not defeated, travel to earth
@@ -83,20 +81,20 @@ public class FlyAction extends Action{
 		//if the player is currently on moon and the final boss is defeated, win the game
 		else if(map == moonMapObj && win) {
 
+			Location earthLocationRef = earthMapObj.at(22, 10);
+			earthMapObj.moveActor(actor,earthLocationRef);
+
 			for (Actor actorOnMap : actorLocationObj) {
 				map.removeActor(actorOnMap);
 			}
-			//map.removeActor(actor);
 		}
 		
 		//if the player does not have a space suit
 		else {
 			return "---------- You need a Space Suit ! ------------";
 		}
-
 		player.atMoon(atMoonMap,earthMapObj,moonMapObj,actorLocationObj);
 		return null;
-
 	}
 	
 
