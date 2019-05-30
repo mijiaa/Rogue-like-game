@@ -12,15 +12,22 @@ public class BuildRocket extends Action {
 	private Display printResult = new Display();
 	private static GameMap earthMapObj;
 	private static GameMap moonMapObj;
-
+	private static ActorLocations actorLocationObj;
+	
 	/**
 	 * Constructor.
 	 * @param earthMap represents earth map object
 	 * @param moonMap represents moon map object
 	 */
-	public BuildRocket(GameMap earthMap,GameMap moonMap) {
+	//public BuildRocket(GameMap earthMap,GameMap moonMap) {
+		//earthMapObj = earthMap;
+		//moonMapObj = moonMap;
+	//}
+	
+	public BuildRocket(GameMap earthMap,GameMap moonMap,ActorLocations actorLocat) {
 		earthMapObj = earthMap;
 		moonMapObj = moonMap;
+		actorLocationObj = actorLocat;
 	}
 	
 	/**
@@ -37,7 +44,7 @@ public class BuildRocket extends Action {
 		
 		//declaring rocket object and passing both map objects to rocket
 		Rocket rocket = new Rocket("Rocket", '~');
-		rocket.setMap(earthMapObj, moonMapObj); 
+		rocket.setMap(earthMapObj, moonMapObj,actorLocationObj); 
 		
 		//removing both Rocket Engine and Rocket Body from player's item inventory once the player chosen the build rocket action
 		for (int i =0; i<inventoryItems.size(); i++){

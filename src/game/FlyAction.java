@@ -3,6 +3,7 @@ package game;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.ActorLocations;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.Item;
@@ -14,6 +15,7 @@ import java.util.List;
 public class FlyAction extends Action{
 	private static GameMap earthMapObj;
 	private static GameMap moonMapObj;
+	private static ActorLocations actorLocationObj;
 	SpaceSuit ss;
 	Boolean s_suit = false;
 	Boolean win = false;
@@ -24,9 +26,10 @@ public class FlyAction extends Action{
 	 * @param earthMap represents earth map object
 	 * @param moonMap represents moon map object
 	 */
-	public FlyAction(GameMap earthMap,GameMap moonMap) {
+	public FlyAction(GameMap earthMap,GameMap moonMap,ActorLocations actorLocat) {
 		earthMapObj = earthMap;
 		moonMapObj = moonMap;
+		actorLocationObj = actorLocat;
 	}
 	
 	/**
@@ -59,7 +62,7 @@ public class FlyAction extends Action{
 		if (items.contains(ss)) {
 			fly();
 			player = (ExtendedPlayer) actor;
-			player.atMoon(s_suit, earthMapObj,moonMapObj);
+			player.atMoon(s_suit, earthMapObj,moonMapObj,actorLocationObj);
 		}
 		
 		//if the player is currently on earth and contains space suit
@@ -67,19 +70,21 @@ public class FlyAction extends Action{
 			Location moonLocationRef = moonMapObj.at(22, 10);
 			moonMapObj.moveActor(actor,moonLocationRef);
 			atMoonMap = true;
-			player.atMoon(atMoonMap,earthMapObj,moonMapObj);
+			player.atMoon(atMoonMap,earthMapObj,moonMapObj,actorLocationObj);
 		}
 		//if the player is currently on moon,contains space suit and the final boss is not defeated
 		else if (map == moonMapObj && s_suit & !win) {
 			Location earthLocationRef = earthMapObj.at(22, 10);
 			earthMapObj.moveActor(actor,earthLocationRef);
 
-			player.atMoon(atMoonMap,earthMapObj,moonMapObj);
+			player.atMoon(atMoonMap,earthMapObj,moonMapObj,actorLocationObj);
 		}
 		//if the player is currently on moon and the final boss is defeated
 		else if(map == moonMapObj && win) {
-
-			map.removeActor(actor);
+			for (Actor actorOnMap : actorLocationObj) {
+				map.removeActor(actorOnMap);
+			}
+			//map.removeActor(actor);
 
 		}
 		

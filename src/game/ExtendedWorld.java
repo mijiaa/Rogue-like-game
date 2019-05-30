@@ -3,6 +3,7 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.ActorLocations;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
@@ -25,6 +26,10 @@ public class ExtendedWorld extends World {
 	public ExtendedWorld(Display display) {
 		super(display);
 		// TODO Auto-generated constructor stub
+	}
+	
+	public ActorLocations getActorLocat() {
+		return actorLocations;
 	}
 	
 	/**

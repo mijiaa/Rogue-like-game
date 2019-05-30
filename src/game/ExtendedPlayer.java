@@ -15,6 +15,7 @@ public class ExtendedPlayer extends Player {
     private Boolean moon= false;
     private static GameMap moonMapObj;
     private static GameMap earthMapObj;
+    private static ActorLocations actorLocationObj;
     private static final int MIN_OXYGEN_POINTS = 0;
     private static final int MAX_OXYGEN_POINTS = 10;
     private int counter = 0;
@@ -61,7 +62,7 @@ public class ExtendedPlayer extends Player {
 
 	        if (oxygen_point == -1) {
 	        	if (counter > 0) {
-	        		Action flyToEarthAction = new FlyAction(earthMapObj,moonMapObj);
+	        		Action flyToEarthAction = new FlyAction(earthMapObj,moonMapObj,actorLocationObj);
 	        		actions.add(flyToEarthAction);
 	        		counter = 0;
 	            	for(int i=0;i<actions.size();i++) {
@@ -110,10 +111,11 @@ public class ExtendedPlayer extends Player {
      * @param earthMap
      * @param moonMap
      */
-    public void atMoon(boolean moon, GameMap earthMap,GameMap moonMap) {
+    public void atMoon(boolean moon, GameMap earthMap,GameMap moonMap,ActorLocations actorLocat) {
         this.moon = moon;
         this.moonMapObj = moonMap;
         this.earthMapObj = earthMap;
+        this.actorLocationObj = actorLocat;
     }
 
 
