@@ -6,8 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Grunt extends Actor {
-
-	// Grunts have 50 hitPoints and are always represented with a g
+	
+	/**
+	 * Constructor
+	 * @param name Name to call Grunt in the UI
+	 * @param player Character to represent Grunt in the UI
+	 * 
+	 * Grunt have 50 hitPoints and are always represented with a g
+	 * Grunt has a FollowBehaviour that follows player around the game map.
+	 */
 	public Grunt(String name, Actor player) {
 		super(name, 'g',5, 50);
 		addBehaviour(new FollowBehaviour(player));

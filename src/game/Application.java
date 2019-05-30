@@ -10,7 +10,7 @@ public class Application {
 	public static void main(String[] args) {
 		ExtendedWorld world = new ExtendedWorld(new Display());
 		
-		GameMap gameMap;
+		GameMap gameMap; 
 		GameMap moonMap;
 		RocketPad rocketPlatform = new RocketPad();
 		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(),new Door(),rocketPlatform, new OxygenDispenser(),new Pool());
@@ -46,6 +46,8 @@ public class Application {
 		moonMap = new GameMap(groundFactory, moonmap);
 		world.addMap(gameMap);
 		world.addMap(moonMap);
+		
+		//passing gameMap and moonMap objects to RocketPad class
 		rocketPlatform.setMap(gameMap, moonMap);
 		
 		
@@ -57,9 +59,9 @@ public class Application {
 		Key key = k. newInventoryItem("Key",'K');
 		Item rocketEngine = rocketEng.newInventoryItem("Rocket Engine",'<');
 		SpaceSuit s_suit = new SpaceSuit("Space Suit",'S');
-		WaterPistol pistol = new WaterPistol("Water Pistol", 'P');
+		WaterPistol waterPistol = new WaterPistol("Water Pistol", 'P');
 		//OxygenTank oxygenTank = new OxygenTank("Oxygen Tank",'T');
-		pistol.addSkill(ItemSkills.LOADED);
+		waterPistol.addSkill(ItemSkills.LOADED);
 
 
 
@@ -73,7 +75,7 @@ public class Application {
 		player.addItemToInventory(rocketBody);
 		//player.addItemToInventory(oxygenTank);
 //		player.addItemToInventory(oxygenTank);
-		player.addItemToInventory(pistol);
+		player.addItemToInventory(waterPistol);
 		player.addItemToInventory(s_suit);
 		player.addItemToInventory(key);
 
@@ -90,18 +92,31 @@ public class Application {
 		Grunt grunt2 = new Grunt("Norbert", player); 
 		gameMap.addActor(grunt2,  10, 3);
 		grunt2.addItemToInventory(key);
-
+		
+		//adding grunt to moon map
+		Grunt grunt3 = new Grunt("Gary", player); 
+		moonMap.addActor(grunt3,  10, 3);
+		
 		//adding goon to game map, goon has key
 		Goon goon = new Goon("Robert",player);
 		gameMap.addActor(goon, 0, 10);
 		//gameMap.addActor(goon, 22, 7); //test when player is knocked out
 		goon.addItemToInventory(key);
-
+		
+		//adding goon to moon map
+		Goon goon2 = new Goon("Paul",player);
+		moonMap.addActor(goon2, 0, 10);
+		
 		//adding ninja to game map
 		Ninja ninja = new Ninja("Naruto",player);
 		gameMap.addActor(ninja, 15, 8);
 		ninja.setOriLocation(gameMap);
 		ninja.addItemToInventory(key);
+		
+		//adding ninja to moon map
+		Ninja ninja2 = new Ninja("Sasuke",player);
+		moonMap.addActor(ninja2, 15, 8);
+		ninja2.setOriLocation(moonMap);
 
 		//adding MiniBoss inside a locked room, MiniBoss has rocket engine
 		MiniBoss miniBoss = new MiniBoss("Doctor Maybe" , player);
@@ -112,12 +127,16 @@ public class Application {
 		Q q = new Q("Q" , player);
 		gameMap.addActor(q ,11, 6);
 		q.addItemToInventory(rocketBody);
-
+		
+		//adding final boss to moon map
 		FinalBoss yugo_m = new FinalBoss("Yugo Maxx" , player);
 		moonMap.addActor(yugo_m, 19,10);
+		
 		//adding rocket plan inside a locked room
 		gameMap.addItem(rocketPlan,6,2);
 		
+		//adding water pistol on moon map 
+		moonMap.addItem(waterPistol, 22, 5);
 		
 		world.run();
 	}

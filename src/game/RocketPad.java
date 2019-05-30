@@ -17,17 +17,29 @@ public class RocketPad extends Ground {
 	private static GameMap earthMapObj;
 	private static GameMap moonMapObj;
 	
-	
+	/**
+     * Set the instance of earthMap and moonMap
+     * @param earthMap GameMap object representing the earthMap
+     * @param moonMap GameMap object representing the moonMap
+     */
 	public void setMap(GameMap earthMap,GameMap moonMap) {
 		earthMapObj = earthMap;
 		moonMapObj = moonMap;
 
 	}
 	
+	/**
+	 * Method to get the earthMap object
+	 * @return GameMap object representing the earthMap
+	 */
 	public GameMap getEarthMap() {
 		return earthMapObj;
 	}
 	
+	/**
+	 * Method to get the moonMap object
+	 * @return GameMap object representing the moonMap
+	 */
 	public GameMap getMoonMap() {
 		return moonMapObj;
 	}

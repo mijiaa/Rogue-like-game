@@ -15,18 +15,30 @@ public class Rocket extends Item {
 	private static GameMap earthMapObj;
 	private static GameMap moonMapObj;
 	
-	
+	/**
+	 * Constructor
+	 * @param name The name of the item
+	 * @param displayChar Character to represent the item for display purpose on map
+	 */
     public Rocket(String name, char displayChar) {
         super(name, displayChar);
     }
     
+    /**
+     * Set the instance of earthMap and moonMap
+     * @param earthMap GameMap object representing the earthMap
+     * @param moonMap GameMap object representing the moonMap
+     */
     public void setMap(GameMap earthMap,GameMap moonMap) {
 
 		earthMapObj = earthMap;
 		moonMapObj = moonMap;
 	}
     
-    
+    /**
+     * Adding Fly action to player to allow moving between maps
+     */
+    @Override
     public Actions getAllowableActions() {
     	
     	if(name.equalsIgnoreCase("Rocket")) {
