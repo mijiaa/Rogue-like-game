@@ -3,6 +3,7 @@ package game;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
+import edu.monash.fit2099.engine.ActorLocations;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Item;
@@ -16,16 +17,16 @@ import java.util.List;
 public class RocketPad extends Ground {
 	private static GameMap earthMapObj;
 	private static GameMap moonMapObj;
-	
+	private static ActorLocations actorLocationObj;
 	/**
      * Set the instance of earthMap and moonMap
      * @param earthMap GameMap object representing the earthMap
      * @param moonMap GameMap object representing the moonMap
      */
-	public void setMap(GameMap earthMap,GameMap moonMap) {
+	public void setMap(GameMap earthMap,GameMap moonMap,ActorLocations actorLocat) {
 		earthMapObj = earthMap;
 		moonMapObj = moonMap;
-
+		actorLocationObj = actorLocat;
 	}
 	
 	/**
@@ -95,7 +96,7 @@ public class RocketPad extends Ground {
 		//if player has both Rocket Body and Rocket Engine,add new actions of building rocket to player
 		if(canBuildRocket >= 2) {
 			Actions buildRocketActions = new Actions();
-			Action buildRocketAction = new BuildRocket(earthMapObj,moonMapObj);
+			Action buildRocketAction = new BuildRocket(earthMapObj,moonMapObj,actorLocationObj);
 			buildRocketActions.add(buildRocketAction);
 			return buildRocketActions;
 		}

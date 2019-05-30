@@ -3,6 +3,7 @@ package game;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
+import edu.monash.fit2099.engine.ActorLocations;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
@@ -14,6 +15,7 @@ public class Rocket extends Item {
 
 	private static GameMap earthMapObj;
 	private static GameMap moonMapObj;
+	private static ActorLocations actorLocationObj;
 	
 	/**
 	 * Constructor
@@ -29,10 +31,11 @@ public class Rocket extends Item {
      * @param earthMap GameMap object representing the earthMap
      * @param moonMap GameMap object representing the moonMap
      */
-    public void setMap(GameMap earthMap,GameMap moonMap) {
+    public void setMap(GameMap earthMap,GameMap moonMap,ActorLocations actorLocat) {
 
 		earthMapObj = earthMap;
 		moonMapObj = moonMap;
+		actorLocationObj = actorLocat;
 	}
     
     /**
@@ -44,7 +47,7 @@ public class Rocket extends Item {
     	if(name.equalsIgnoreCase("Rocket")) {
 
     		Actions flyActions = new Actions();
-    		Action flyAction = new FlyAction(earthMapObj,moonMapObj);
+    		Action flyAction = new FlyAction(earthMapObj,moonMapObj,actorLocationObj);
     		flyActions.add(flyAction);
     		return flyActions;
     	}
