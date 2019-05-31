@@ -19,8 +19,8 @@ public class Rocket extends Item {
 	
 	/**
 	 * Constructor
-	 * @param name The name of the item
-	 * @param displayChar Character to represent the item for display purpose on map
+	 * @param name represents the name of rocket
+	 * @param displayChar display character of rocket on map
 	 */
     public Rocket(String name, char displayChar) {
         super(name, displayChar);
@@ -28,8 +28,9 @@ public class Rocket extends Item {
     
     /**
      * Set the instance of earthMap and moonMap
-     * @param earthMap GameMap object representing the earthMap
-     * @param moonMap GameMap object representing the moonMap
+     * @param earthMap GameMap object representing the earth map
+	 * @param moonMap GameMap object representing the moon map
+	 * @param actorLocat ActorLocations object representing all the locations of actor
      */
     public void setMap(GameMap earthMap,GameMap moonMap,ActorLocations actorLocat) {
 

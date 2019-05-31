@@ -66,10 +66,12 @@ public class ExtendedPlayer extends Player {
 
 	        if (oxygen_point == -1) {
 	        	if (counter > 0) {
+	        		//adding FlyAction to allowable actions of player
 	        		Action flyToEarthAction = new FlyAction(earthMapObj,moonMapObj,actorLocationObj);
 	        		actions.add(flyToEarthAction);
 	        		counter = 0;
-
+	        		
+	        		//invoke the Fly Action which sends player back to earth if oxygen depleted under allowable amount
 	            	for(Action action : actions) {
 	            		if(action.menuDescription(this).equalsIgnoreCase("Fly")) {
 	            		    // reset oxygen point
@@ -78,7 +80,7 @@ public class ExtendedPlayer extends Player {
 	    				}
 	    			}    			
 	        	}
-	    		counter += 1;
+	    		counter += 1; //counter acting as a boolean to indicate the needs of adding fly action to allowable actions of player
 	        }
     	}
 

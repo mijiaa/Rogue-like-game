@@ -48,7 +48,7 @@ public class Application {
 		world.addMap(moonMap);
 		
 		
-		//passing gameMap and moonMap objects to RocketPad class
+		//passing gameMap,moonMap objects and ActorLocations object to RocketPad class
 		rocketPlatform.setMap(gameMap, moonMap,world.getActorLocat());
 		
 		//Declaring instances for new Rocket objects and key

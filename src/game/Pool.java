@@ -13,7 +13,7 @@ public class Pool extends Ground {
 
     /**
      *{@inheritDoc}
-     * Do not let an actor walk aon water
+     * Do not let an actor walk on water
      * @return false
      */
     @Override

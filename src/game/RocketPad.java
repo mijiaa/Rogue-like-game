@@ -20,8 +20,9 @@ public class RocketPad extends Ground {
 	private static ActorLocations actorLocationObj;
 	/**
      * Set the instance of earthMap and moonMap
-     * @param earthMap GameMap object representing the earthMap
-     * @param moonMap GameMap object representing the moonMap
+     * @param earthMap GameMap object representing the earth map
+	 * @param moonMap GameMap object representing the moon map
+	 * @param actorLocat ActorLocations object representing all the locations of actor
      */
 	public void setMap(GameMap earthMap,GameMap moonMap,ActorLocations actorLocat) {
 		earthMapObj = earthMap;

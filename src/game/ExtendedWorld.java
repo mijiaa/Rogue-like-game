@@ -55,6 +55,7 @@ public class ExtendedWorld extends World {
 			playersMap.draw(display);
 			
 			for (Actor actor : actorLocations) {
+				//only process actors on the same map as player
 				if((playersMap.locationOf(actor).map()).equals(playersMap)) {
 					processActorTurn(actor);
 				}
@@ -108,7 +109,7 @@ public class ExtendedWorld extends World {
 			actions.add(item.getAllowableActions());
 		}
 		
-		//extra quitting action that is added to player
+		//extra quitting action added to player
 		if(actor.toString() == "Player") {
 			QuitGameAction quitGame = new QuitGameAction();
 			quitGame.addActorLocations(actorLocations);

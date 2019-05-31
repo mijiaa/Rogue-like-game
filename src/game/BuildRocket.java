@@ -16,14 +16,10 @@ public class BuildRocket extends Action {
 	
 	/**
 	 * Constructor.
-	 * @param earthMap represents earth map object
-	 * @param moonMap represents moon map object
-	 */
-	//public BuildRocket(GameMap earthMap,GameMap moonMap) {
-		//earthMapObj = earthMap;
-		//moonMapObj = moonMap;
-	//}
-	
+	 * @param earthMap GameMap object representing the earth map
+	 * @param moonMap GameMap object representing the moon map
+	 * @param actorLocat ActorLocations object representing all the locations of actor
+	 */	
 	public BuildRocket(GameMap earthMap,GameMap moonMap,ActorLocations actorLocat) {
 		earthMapObj = earthMap;
 		moonMapObj = moonMap;
@@ -34,7 +30,7 @@ public class BuildRocket extends Action {
 	 * {@inheritDoc}
 	 *
 	 * Player places both Rocket Body and Rocket Engine on Rocket Pad
-	 * and build and obtain a Rocket
+	 * and build Rocket at the same spot as RocketPad
 	 *
 	 * Perform the Action.
 	 */

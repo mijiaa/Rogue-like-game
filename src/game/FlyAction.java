@@ -23,8 +23,9 @@ public class FlyAction extends Action{
 
 	/**
 	 *
-	 * @param earthMap represents earth map object
-	 * @param moonMap represents moon map object
+	 * @param earthMap GameMap object representing the earth map
+	 * @param moonMap GameMap object representing the moon map
+	 * @param actorLocat ActorLocations object representing all the locations of actor
 	 */
 	public FlyAction(GameMap earthMap,GameMap moonMap,ActorLocations actorLocat) {
 		earthMapObj = earthMap;

@@ -9,8 +9,8 @@ import edu.monash.fit2099.engine.Item;
 public class SpaceSuit extends Item {
     /***
      *
-     * @param name
-     * @param displayChar
+     * @param name represents the name of the SpaceSuit
+     * @param displayChar represents the display character of SpaceSuit on map
      *
      */
     public SpaceSuit(String name, char displayChar) {

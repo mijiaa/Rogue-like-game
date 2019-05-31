@@ -10,8 +10,8 @@ public class WaterPistol extends Item {
 
     /***
      *
-     * @param name
-     * @param displayChar
+     * @param name represents the name of WaterPistol
+     * @param displayChar represents the display character of WaterPistol on map
      * WaterPistol object created has 2 default skills, UNLOADED and SHOOT
      */
     public WaterPistol(String name, char displayChar) {

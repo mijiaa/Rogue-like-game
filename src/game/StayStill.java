@@ -12,7 +12,7 @@ public class StayStill implements ActionFactory {
     /**
      * {@inheritDoc}
      *
-     * This method skip the actor's turn, retrict it from performing any action
+     * This method skip the actor's turn, restrict it from performing any action
      * @return new instantiated SkipTurnAction
      */
     @Override
