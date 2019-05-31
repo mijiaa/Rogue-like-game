@@ -23,7 +23,7 @@ public class FinalBoss extends Actor {
      *
      */
     public FinalBoss (String name, Actor player){
-        super(name,'Y',3,10);
+        super(name,'Y',3,50);
         this.player = player;
 
         this.addSkill(ItemSkills.EXOSKELETON);
@@ -32,6 +32,17 @@ public class FinalBoss extends Actor {
         this.addSkill(ItemSkills.WIN);
     }
     private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
+
+    /**
+     *
+     *{@inheritDoc}
+     * Final boss has the same damage as goon
+     * @return a freshly-instantiated IntrinsicWeapon .
+     */
+    @Override
+    protected IntrinsicWeapon getIntrinsicWeapon() {
+        return new IntrinsicWeapon(10, "punches");
+    }
 
     /**
      *{@inheritDoc}

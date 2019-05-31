@@ -25,9 +25,9 @@ public class Application {
 				".......................",
 				".......................",
 				".......................",
-				".......................",
+				"......................O",
 				"....................###",
-				".........*.......O..|.X");
+				".........*..........|.X");
 		
 		List<String> moonmap = Arrays.asList(
 				".......................",
@@ -49,7 +49,6 @@ public class Application {
 		
 		
 		//passing gameMap and moonMap objects to RocketPad class
-		//rocketPlatform.setMap(gameMap, moonMap);
 		rocketPlatform.setMap(gameMap, moonMap,world.getActorLocat());
 		
 		//Declaring instances for new Rocket objects and key
@@ -61,47 +60,27 @@ public class Application {
 		Item rocketEngine = rocketEng.newInventoryItem("Rocket Engine",'<');
 		SpaceSuit s_suit = new SpaceSuit("Space Suit",'S');
 		WaterPistol waterPistol = new WaterPistol("Water Pistol", 'P');
-		//OxygenTank oxygenTank = new OxygenTank("Oxygen Tank",'T');
-		waterPistol.addSkill(ItemSkills.LOADED);
-
-
-
-		gameMap.addItem(s_suit,5,10);
 
 
 		Actor player = new ExtendedPlayer("Player", '@', 1, 100);
+		world.addPlayer(player, gameMap, 0,22);
 
-		player.addItemToInventory(rocketPlan);
-		player.addItemToInventory(rocketEng);
-		player.addItemToInventory(rocketBody);
-		//player.addItemToInventory(oxygenTank);
-//		player.addItemToInventory(oxygenTank);
-		player.addItemToInventory(waterPistol);
-		player.addItemToInventory(s_suit);
-		player.addItemToInventory(key);
-
-		
-		//world.addPlayer(player, gameMap, 8,22);
-		world.addPlayer(player, gameMap, 10,18);
-						
-		
 		//adding grunts to game map, grunts has key
-		Grunt grunt = new Grunt("Mongo", player); 
+		Grunt grunt = new Grunt("Mongo", player);
 		gameMap.addActor(grunt, 4, 8);
 		grunt.addItemToInventory(key);
 
-		Grunt grunt2 = new Grunt("Norbert", player); 
+		Grunt grunt2 = new Grunt("Norbert", player);
 		gameMap.addActor(grunt2,  10, 3);
 		grunt2.addItemToInventory(key);
-		
+
 		//adding grunt to moon map
-		Grunt grunt3 = new Grunt("Gary", player); 
+		Grunt grunt3 = new Grunt("Gary", player);
 		moonMap.addActor(grunt3,  10, 3);
-		
+
 		//adding goon to game map, goon has key
 		Goon goon = new Goon("Robert",player);
 		gameMap.addActor(goon, 0, 10);
-		//gameMap.addActor(goon, 22, 7); //test when player is knocked out
 		goon.addItemToInventory(key);
 		
 		//adding goon to moon map
@@ -113,10 +92,10 @@ public class Application {
 		gameMap.addActor(ninja, 15, 8);
 		ninja.setOriLocation(gameMap);
 		ninja.addItemToInventory(key);
-		
+
 		//adding ninja to moon map
 		Ninja ninja2 = new Ninja("Sasuke",player);
-		moonMap.addActor(ninja2, 15, 8);
+		moonMap.addActor(ninja2, 2, 8);
 		ninja2.setOriLocation(moonMap);
 
 		//adding MiniBoss inside a locked room, MiniBoss has rocket engine
@@ -131,14 +110,15 @@ public class Application {
 		
 		//adding final boss to moon map
 		FinalBoss yugo_m = new FinalBoss("Yugo Maxx" , player);
-		moonMap.addActor(yugo_m, 19,10);
+		moonMap.addActor(yugo_m, 10,7);
 		
 		//adding rocket plan inside a locked room
 		gameMap.addItem(rocketPlan,6,2);
-		
+		//Space suit on earth map
+		gameMap.addItem(s_suit,6,3);
 		//adding water pistol on moon map 
-		moonMap.addItem(waterPistol, 22, 5);
-		
+		moonMap.addItem(waterPistol, 22, 4);
+
 		world.run();
 	}
 
